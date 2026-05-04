@@ -8,35 +8,71 @@
  */
 
 
+import javafx.beans.property.*;
+
 public class KidsRoom extends SmartDevice {
 
     // ───Attributes────────────────────────────────────────────
-    MasterRoom masterRoom;
-    private boolean isLightsOn;
-    private double temperature;
-    private boolean isBedTime;
-    private boolean isAwake;
-    private boolean isACOn;
-    private boolean safety;
+    private final BooleanProperty lightsOn = new SimpleBooleanProperty(false);
+    private final DoubleProperty temperature = new SimpleDoubleProperty(0);
+    private final BooleanProperty bedTime = new SimpleBooleanProperty(false);
+    private final BooleanProperty awake = new SimpleBooleanProperty(false);
+    private final BooleanProperty acOn = new SimpleBooleanProperty(false);
+    private final BooleanProperty babySafety = new SimpleBooleanProperty(false);
+    private MasterRoom masterRoom;
 
     // ──────Constructor───────────────────────────────────────
     public KidsRoom(String deviceId, String name, String room,
-                    boolean isLightsOn, double temperature, boolean isACOn, boolean safety, boolean isBedTime,
-                    boolean isAwake, MasterRoom masterRoom) {
+                    boolean lightsOn, double temperature, boolean acOn, boolean babySafety, boolean bedTime,
+                    boolean awake, MasterRoom masterRoom) {
         super(deviceId, name, room);
-        this.isLightsOn = isLightsOn;
-        this.temperature = temperature;
-        this.isACOn = isACOn;
-        this.safety = safety;
-        this.isBedTime = isBedTime;
-        this.isAwake = isAwake;
+        this.lightsOn.set(lightsOn);
+        this.acOn.set(acOn);
+        this.babySafety.set(babySafety);
+        this.bedTime.set(bedTime);
+        this.awake.set(awake);
         this.masterRoom = masterRoom;
+
+        this.temperature.addListener((obs, oldV, newV) -> configAC());
+        this.temperature.set(temperature);
+
+        updateStatus("Device Initialized");
     }
 
     // ─────Reading device state───────────────────────────
     @Override
     public void readState() {
-        updateStatus(getStatusIcon());
+        updateStatus(String.format("Lights=%s AC=%s BedTime=%s Safety=%s  Baby=%s",
+                isLightsOn() ? "ON" : "OFF",
+                isAcOn() ? "ON" : "OFF",
+                isBedTime() ? "SLEEP TIME" : "NOT SLEEP TIME",
+                isSafe() ? "SAFE" : "ALERT",
+                isAwake() ? "AWAKE" : "ASLEEP"));
+    }
+
+    // ─────JavaFX property & binding───────────────────────
+    public BooleanProperty lightsOnProperty() {
+        return lightsOn;
+    }
+
+    public BooleanProperty acOnProperty() {
+        return acOn;
+    }
+
+    public BooleanProperty bedTimeProperty() {
+        return bedTime;
+    }
+
+    public BooleanProperty awakeProperty() {
+        return awake;
+    }
+
+    public BooleanProperty babySafetyProperty() {
+        return babySafety;
+    }
+
+    public DoubleProperty temperatureProperty() {
+        return temperature;
     }
 
     // ────Sending commands to devices─────────────────────
@@ -60,18 +96,18 @@ public class KidsRoom extends SmartDevice {
                 updateStatus("Bed time mode activated");
             }
 
-            case ("the baby is awake") -> {
+            case ("motion detected") -> {
                 motionDetector();
-                updateStatus("The baby is awake");
+                updateStatus("Motion detected");
             }
 
             case ("ac on") -> {
-                setACOn(true);
+                setAcOn(true);
                 updateStatus("Ac on");
             }
 
             case ("ac off") -> {
-                setACOn(false);
+                setAcOn(false);
                 updateStatus("Ac off");
             }
 
@@ -82,71 +118,70 @@ public class KidsRoom extends SmartDevice {
     // ──────Visual icons for status──────────────────────
     @Override
     public String getStatusIcon() {
-        return (isLightsOn ? "💡" : "🌑") +
-                (isACOn ? "❄" : "🔥") +
-                (safety ? "✅" : "⚠") +
-                (isBedTime ? "🌙" : "☀") +
-                (isAwake ? "👶" : "😴");
+        return (lightsOn.get() ? " 💡 " : " 🌑 ") +
+                (acOn.get() ? " ❄ " : " 🔥 ") +
+                (babySafety.get() ? " ✅ " : " ⚠ ") +
+                (bedTime.get() ? " 🌙 " : " ☀ ") +
+                (awake.get() ? " 👶 " : " 😴 ");
     }
 
     // ───────Setter & Getters───────────────────────────────
     public boolean isLightsOn() {
-        return isLightsOn;
+        return lightsOn.get();
     }
 
     public void setLightsOn(boolean lightsOn) {
-        isLightsOn = lightsOn;
+        this.lightsOn.set(lightsOn);
     }
 
     public double getTemperature() {
-        return temperature;
+        return temperature.get();
     }
 
     public void setTemperature(double temperature) {
-        this.temperature = temperature;
-        configAC();
+        this.temperature.set(temperature);
     }
 
-    public boolean isACOn() {
-        return isACOn;
+    public boolean isAcOn() {
+        return acOn.get();
     }
 
-    public void setACOn(boolean ACOn) {
-        isACOn = ACOn;
+    public void setAcOn(boolean acOn) {
+        this.acOn.set(acOn);
     }
 
     public boolean isSafe() {
-        return safety;
+        return babySafety.get();
     }
 
-    public void setSafety(boolean safety) {
-        this.safety = safety;
+    public void setBabySafety(boolean babySafety) {
+        this.babySafety.set(babySafety);
     }
 
     public boolean isBedTime() {
-        return isBedTime;
+        return bedTime.get();
     }
 
     public void setBedTime(boolean bedTime) {
-        isBedTime = bedTime;
+        this.bedTime.set(bedTime);
     }
 
     public boolean isAwake() {
-        return isAwake;
+        return awake.get();
     }
 
     public void setAwake(boolean awake) {
-        isAwake = awake;
+        this.awake.set(awake);
     }
 
     //───────Bed time mode─────────────────────────────
     public void bedTimeMode() {
 
-        if (isBedTime) return;
+        if (bedTime.get()) return;
         setBedTime(true);
         setLightsOn(false);
-        setACOn(false);
-        setSafety(true);
+        setAcOn(false);
+        setBabySafety(true);
         setAwake(false);
         updateStatus("It's bed time");
     }
@@ -157,7 +192,7 @@ public class KidsRoom extends SmartDevice {
         setAwake(true);
         setBedTime(false);
         setLightsOn(true);
-        setSafety(true);
+        setBabySafety(true);
         if (masterRoom != null) {
             masterRoom.setLightsOn(true);
         }
@@ -167,12 +202,12 @@ public class KidsRoom extends SmartDevice {
     // ───────Automatic AC─────────────────────────────
     public void configAC() {
 
-        if (getTemperature() >= 30 && !isACOn()) {
-            setACOn(true);
+        if (getTemperature() >= 30 && !isAcOn()) {
+            setAcOn(true);
             updateStatus("AC activated");
 
-        } else if (getTemperature() <= 26 && isACOn()) {
-            setACOn(false);
+        } else if (getTemperature() <= 26 && isAcOn()) {
+            setAcOn(false);
             updateStatus("AC deactivated");
         }
     }

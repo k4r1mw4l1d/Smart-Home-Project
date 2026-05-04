@@ -7,36 +7,69 @@
  *                  5. TV controller.
  */
 
+import javafx.beans.property.*;
+
 public class MasterRoom extends SmartDevice {
 
     // ───Attributes────────────────────────────────────────────
-    private boolean isDoorLocked;
-    private boolean isLightsOn;
-    private double temperature;
-    private String smartScene;
-    private boolean isACOn;
-    private boolean isTVOn;
+    private final BooleanProperty doorLocked = new SimpleBooleanProperty(false);
+    private final BooleanProperty lightsOn = new SimpleBooleanProperty(false);
+    private final DoubleProperty temperature = new SimpleDoubleProperty(0);
+    private final StringProperty smartScene = new SimpleStringProperty("");
+    private final BooleanProperty acOn = new SimpleBooleanProperty(false);
+    private final BooleanProperty tvOn = new SimpleBooleanProperty(false);
 
 
     // ──────Constructor───────────────────────────────────────
-    public MasterRoom(String deviceId, String name, String room, boolean isLightsOn, double temperature,
-                      boolean isACOn, String smartScene, boolean isDoorLocked, boolean isTVOn) {
+    public MasterRoom(String deviceId, String name, String room, boolean lightsOn, double temperature,
+                      boolean acOn, String smartScene, boolean doorLocked, boolean tvOn) {
         super(deviceId, name, room);
 
-        this.isLightsOn = isLightsOn;
-        this.temperature = temperature;
-        this.isACOn = isACOn;
-        this.smartScene = smartScene;
-        this.isDoorLocked = isDoorLocked;
-        this.isTVOn = isTVOn;
+        this.lightsOn.set(lightsOn);
+        this.acOn.set(acOn);
+        this.smartScene.set(smartScene);
+        this.doorLocked.set(doorLocked);
+        this.tvOn.set(tvOn);
+
+        this.temperature.addListener((obs, oldV, newV) -> configAC());
+        this.temperature.set(temperature);
 
         updateStatus("Device Initialized");
+    }
+
+    // ─────JavaFX property & binding───────────────────────
+    public BooleanProperty doorLockedProperty() {
+        return doorLocked;
+    }
+
+    public BooleanProperty lightsOnProperty() {
+        return lightsOn;
+    }
+
+    public DoubleProperty temperatureProperty() {
+        return temperature;
+    }
+
+    public StringProperty smartSceneProperty() {
+        return smartScene;
+    }
+
+    public BooleanProperty acOnProperty() {
+        return acOn;
+    }
+
+    public BooleanProperty tvOnProperty() {
+        return tvOn;
     }
 
     // ─────Reading device state───────────────────────────
     @Override
     public void readState() {
-        updateStatus(getStatusIcon());
+        updateStatus(String.format("Lights=%s AC=%s Door=%s TV=%s",
+                isLightsOn() ? "ON" : "OFF",
+                isAcOn() ? "ON" : "OFF",
+                isDoorLocked() ? "LOCKED" : "UNLOCKED",
+                isTvOn() ? "ON" : "OFF"));
     }
 
     // ────Sending commands to devices─────────────────────
@@ -56,12 +89,12 @@ public class MasterRoom extends SmartDevice {
             }
 
             case "ac on" -> {
-                setACOn(true);
+                setAcOn(true);
                 updateStatus("AC ON");
             }
 
             case "ac off" -> {
-                setACOn(false);
+                setAcOn(false);
                 updateStatus("AC OFF");
             }
 
@@ -76,12 +109,12 @@ public class MasterRoom extends SmartDevice {
             }
 
             case "tv on" -> {
-                setTVOn(true);
+                setTvOn(true);
                 updateStatus("TV ON");
             }
 
             case "tv off" -> {
-                setTVOn(false);
+                setTvOn(false);
                 updateStatus("TV OFF");
             }
 
@@ -92,76 +125,71 @@ public class MasterRoom extends SmartDevice {
     // ──────Visual icons for status──────────────────────
     @Override
     public String getStatusIcon() {
-        return (isLightsOn ? "💡" : "🌑") +
-                (isACOn ? "❄" : "🔥") +
-                (isDoorLocked ? "🔒" : "🔓") +
-                (isTVOn ? "📺" : "📴");
+        return (lightsOn.get() ? " 💡 " : " 🌑 ") +
+                (acOn.get() ? " ❄ " : " 🔥 ") +
+                (doorLocked.get() ? " 🔒 " : " 🔓 ") +
+                (tvOn.get() ? " 📺 " : " 📴 ");
     }
 
     // ───────Setter & Getters───────────────────────────────
     public boolean isLightsOn() {
-        return isLightsOn;
+        return lightsOn.get();
     }
 
     public void setLightsOn(boolean lightsOn) {
-        isLightsOn = lightsOn;
-        updateStatus("Lights updated");
+        this.lightsOn.set(lightsOn);
     }
 
     public double getTemperature() {
-        return temperature;
+        return temperature.get();
     }
 
     public void setTemperature(double temperature) {
-        this.temperature = temperature;
-        configAC();
+        this.temperature.set(temperature);
     }
 
-    public boolean isACOn() {
-        return isACOn;
+    public boolean isAcOn() {
+        return acOn.get();
     }
 
-    public void setACOn(boolean ACOn) {
-        isACOn = ACOn;
-        updateStatus("AC state changed");
+    public void setAcOn(boolean acOn) {
+        this.acOn.set(acOn);
     }
 
     public String getSmartScene() {
-        return smartScene;
+        return smartScene.get();
     }
 
     public void setSmartScene(String smartScene) {
-        this.smartScene = smartScene;
+        this.smartScene.set(smartScene);
         applyScene();
     }
 
     public boolean isDoorLocked() {
-        return isDoorLocked;
+        return doorLocked.get();
     }
 
     public void setDoorLocked(boolean doorLocked) {
-        isDoorLocked = doorLocked;
-        updateStatus("Door state changed");
+        this.doorLocked.set(doorLocked);
     }
 
-    public boolean isTVOn() {
-        return isTVOn;
+    public boolean isTvOn() {
+        return tvOn.get();
     }
 
-    public void setTVOn(boolean isTVon) {
-        this.isTVOn = isTVon;
-        updateStatus("TV state changed");
+    public void setTvOn(boolean tvOn) {
+        this.tvOn.set(tvOn);
     }
 
     // ───────Automatic AC─────────────────────────────
     public void configAC() {
 
-        if (getTemperature() >= 30 && !isACOn()) {
-            setACOn(true);
+        if (getTemperature() >= 30 && !isAcOn()) {
+            setAcOn(true);
             updateStatus("AC activated");
 
-        } else if (getTemperature() <= 22 && isACOn()) {
-            setACOn(false);
+        } else if (getTemperature() <= 22 && isAcOn()) {
+            setAcOn(false);
             updateStatus("AC deactivated");
         }
     }
@@ -176,7 +204,7 @@ public class MasterRoom extends SmartDevice {
             case "sleep mode" -> {
                 setLightsOn(false);
                 setDoorLocked(true);
-                setTVOn(false);
+                setTvOn(false);
                 updateStatus("Sleep Mode Activated");
             }
 
@@ -188,7 +216,7 @@ public class MasterRoom extends SmartDevice {
 
             case "relax mode" -> {
                 setLightsOn(true);
-                setTVOn(true);
+                setTvOn(true);
                 setDoorLocked(true);
                 updateStatus("Relax Mode Activated");
             }

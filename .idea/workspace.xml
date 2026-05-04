@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Project/Alertable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project/Bathroom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project/KidsRoom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project/MQTT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project/MasterRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="master room&#10;kids room&#10;bathroom">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/SmartDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/SmartDevice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Bathroom.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Bathroom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/KidsRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/KidsRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/MasterRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/MasterRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/mainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/mainApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,9 +31,17 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "history": [
+    {
+      "state": "MERGED",
+      "assignee": "3mr-khaled0",
+      "author": "3mr-khaled0"
+    }
+  ],
   "lastFilter": {
-    "state": "OPEN",
-    "assignee": "3mr-khaled0"
+    "state": "MERGED",
+    "assignee": "3mr-khaled0",
+    "author": "3mr-khaled0"
   }
 }]]></component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
@@ -58,6 +63,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.mainApp.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -87,7 +93,31 @@
       <option name="presentableId" value="Default" />
       <updated>1774530803718</updated>
     </task>
+    <task id="LOCAL-00001" summary="master room&#10;kids room&#10;bathroom">
+      <option name="closed" value="true" />
+      <created>1777824766942</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1777824766942</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="master room&#10;kids room&#10;bathroom" />
+    <option name="LAST_COMMIT_MESSAGE" value="master room&#10;kids room&#10;bathroom" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
