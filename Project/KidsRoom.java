@@ -7,7 +7,6 @@
  *                  5. motion sensor for kids.
  */
 
-
 import javafx.beans.property.*;
 
 public class KidsRoom extends SmartDevice {
