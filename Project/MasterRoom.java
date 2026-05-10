@@ -7,11 +7,7 @@
  *                  5. TV controller.
  */
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.beans.property.*;
-import javafx.util.Duration;
 
 import java.time.LocalTime;
 import java.util.Scanner;
@@ -25,8 +21,6 @@ public class MasterRoom extends SmartDevice {
     private final StringProperty smartScene = new SimpleStringProperty("");
     private final BooleanProperty acOn = new SimpleBooleanProperty(false);
     private final BooleanProperty tvOn = new SimpleBooleanProperty(false);
-    private Timeline alarmTimeline;
-    private boolean alarmPlaying = false;
 
     // ──────Constructor───────────────────────────────────────
     public MasterRoom(String deviceId, String name, String room, boolean lightsOn, double temperature,
