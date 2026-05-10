@@ -15,7 +15,6 @@ public class AlarmTime implements Runnable {
         this.scan = scan;
     }
 
-    // ──── إيقاف الصوت ───────────────────
     public static void stopAlarm() {
 
         if (clip != null && clip.isRunning()) {
@@ -43,7 +42,6 @@ public class AlarmTime implements Runnable {
         playSound();
     }
 
-    // ──── تشغيل الصوت ───────────────────
     private void playSound() {
 
         try (AudioInputStream audioStream =

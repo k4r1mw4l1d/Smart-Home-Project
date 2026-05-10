@@ -47,6 +47,10 @@ public class SmartHomePanel extends Application {
     private Bathroom bathroom;
     private Kitchen kitchen;
     private LivingRoom livingRoom;
+    private Door_security doorSecurity;
+    private ExternalTempSensor tempSensor;
+    private GardenWaterSystem waterSystem;
+    private Camera camera;
 
     public static void main(String[] args) {
         launch(args);
@@ -103,7 +107,7 @@ public class SmartHomePanel extends Application {
                 false,
                 false,
                 25,
-                false
+                true
         );
 
         kitchen = new Kitchen(
@@ -118,6 +122,45 @@ public class SmartHomePanel extends Application {
                 5,
                 false,
                 25
+        );
+
+        doorSecurity = new Door_security(
+                "6",
+                "Out doors",
+                "Outdoors",
+                true,
+                false
+        );
+
+        tempSensor = new ExternalTempSensor(
+                "7",
+                "Temp sensor",
+                "Outdoors",
+                25,
+                30
+        );
+
+        waterSystem = new GardenWaterSystem(
+                "8",
+                "Water system",
+                "Outdoors",
+                false,
+                20.5,
+                false,
+                false,
+                30
+        );
+
+        camera = new Camera(
+                "9",
+                "Camera",
+                "Security",
+                false,
+                false,
+                false,
+                "1080",
+                512,
+                false
         );
 
 
@@ -322,6 +365,7 @@ public class SmartHomePanel extends Application {
         });
 
         side.getChildren().addAll(themes);
+
         // ─────Sidebar -> Alarm─────────────
         HBox alarm = navRows("addAlarm", 24, "Alarms", "#c2c2c2", 16);
         mouseHover(alarm, "#133466", "#0a1e3d");
@@ -333,7 +377,6 @@ public class SmartHomePanel extends Application {
         });
 
         side.getChildren().addAll(alarm);
-
 
         // ─────Empty region to fill space─────────────
         Region spacer = new Region();
@@ -460,12 +503,12 @@ public class SmartHomePanel extends Application {
         });
 
         // ─────Cameras─────────────────────────
-        HBox cameras = navRows("camera", 20, "Cameras", "#c2c2c2", 14);
+        HBox cameras = navRows("camera", 20, "Security", "#c2c2c2", 14);
 
         mouseHover(cameras, "#133466", "#12294a");
 
         cameras.setOnMouseClicked(e -> {
-            setScreen(buildCameras());
+            setScreen(buildSecurity());
             setActive(cameras, "#133466");
         });
 
@@ -865,6 +908,10 @@ public class SmartHomePanel extends Application {
      ─────────── Building Rooms─────────────
     ==========================================*/
 
+    /*==========================================
+     ─────────── Living room cards──────────────
+    ==========================================*/
+
     // ──── 1. Living room─────────────────────
     public VBox buildLivingRoom() {
 
@@ -915,10 +962,6 @@ public class SmartHomePanel extends Application {
 
         return lroom;
     }
-
-    /*==========================================
-     ─────────── Living room cards──────────────
-    ==========================================*/
 
     // ──── Light cards──────────────────────
     public VBox livingLightCard() {
@@ -1245,6 +1288,11 @@ public class SmartHomePanel extends Application {
 
     //─────────────────────────────────────────────────────────────────────────────────────────────────────────
 
+
+    /*==========================================
+     ─────────── Master Room Cards─────────────
+    ==========================================*/
+
     // ──── 2. Master room─────────────────────
     public VBox buildMasterRoom() {
 
@@ -1298,10 +1346,6 @@ public class SmartHomePanel extends Application {
 
         return mroom;
     }
-
-    /*==========================================
-     ─────────── Master Room Cards─────────────
-    ==========================================*/
 
     // ──── Light cards──────────────────────
     public VBox masterLightCard() {
@@ -2739,30 +2783,731 @@ public class SmartHomePanel extends Application {
 
     /*==========================================
     ─────────── Outdoors cards─────────────────
-   ==========================================*/
+    ==========================================*/
 
     // ──── 6. Outdoors────────────────────────
     public VBox buildOutdoors() {
 
-        VBox out = new VBox(20);
-        out.setAlignment(Pos.TOP_LEFT);
+        VBox out = new VBox(0);
+        out.setPadding(new Insets(20));
 
-        out.getChildren().add(roomTitle("Outdoors"));
+        GridPane cards = buildCards(
+                new CardConfig(outWaterPump(), 1, 1),
+                new CardConfig(outDoors(), 1, 1),
+                new CardConfig(outTempSlider(), 1, 1),
+                new CardConfig(outHumidity(), 1, 1),
+                new CardConfig(outRainingStatus(), 1, 1),
+                new CardConfig(outMotionSensor(), 1, 1)
+        );
+
+        cards.setMaxWidth(Double.MAX_VALUE);
+        out.getChildren().addAll(
+                roomTitle("Outdoors"),
+                cards
+        );
+
         return out;
 
     }
 
+    // ──── Water Pump card ──────────────────────
+    public VBox outWaterPump() {
+
+        CardImages result = makeCard("water", "Garden Watering", "waterOn.png", 200);
+
+        VBox card = result.card;
+        ImageView img = result.imageView;
+
+        Image onImg = new Image(IMAGES + "waterOn.png");
+        Image offImg = new Image(IMAGES + "waterOff.png");
+
+        Label status = new Label();
+
+        Button toggle = new Button();
+
+        status.setStyle(
+                "-fx-font-size: 18px;" +
+                        "-fx-font-weight: bold;"
+        );
+
+        toggle.setStyle(
+                "-fx-background-color: #1b55cf;" +
+                        "-fx-text-fill: white;" +
+                        "-fx-font-size: 15px;" +
+                        "-fx-background-radius: 10;"
+        );
+
+        toggle.setOnAction(e -> {
+
+            waterSystem.setWateringOn(
+                    !waterSystem.isWateringOn()
+            );
+        });
+
+        // ──── Making the room for first time──────────────────────
+        boolean initial = waterSystem.isWateringOn();
+
+        img.setImage(initial ? onImg : offImg);
+
+        styleStatusO(status, initial);
+
+        toggle.setText(initial ? "Turn OFF" : "Turn ON");
+
+
+        // ──── Changing (image - status - but) ──────────────────────
+        waterSystem.wateringOnProperty().addListener((obs, oldVal, newVal) -> {
+
+            img.setImage(newVal ? onImg : offImg);
+
+            styleStatusO(status, newVal);
+
+            toggle.setText(newVal ? "Turn OFF" : "Turn ON");
+        });
+
+        VBox content = new VBox(10, status, toggle);
+        content.setAlignment(Pos.CENTER);
+
+        card.getChildren().add(content);
+
+        return card;
+    }
+
+    // ──── Doors cards───────────────────────
+    public VBox outDoors() {
+
+        CardImages result = makeCard("door", "Doors Status", "doorOpen", 200);
+
+        VBox card = result.card;
+        ImageView img = result.imageView;
+
+        Image openImg = new Image(IMAGES + "doorOpen.png");
+        Image closedImg = new Image(IMAGES + "doorClosed.png");
+
+        Label status = new Label();
+        Button toggle = new Button();
+
+        toggle.setStyle(
+                "-fx-background-color: #1b55cf;" +
+                        "-fx-text-fill: white;" +
+                        "-fx-font-size: 15px;" +
+                        "-fx-background-radius: 10;"
+        );
+
+        toggle.setOnAction(e ->
+                doorSecurity.setDoorOpen(!doorSecurity.isDoorOpen())
+        );
+
+        // ──── Making the room for first time──────────────────────
+        boolean open = doorSecurity.isDoorOpen();
+        img.setImage(open ? openImg : closedImg);
+        styleStatusC(status, open);
+        toggle.setText(open ? "Close" : "Open");
+
+
+        // ──── Changing (image - status - bt)──────────────────────
+        doorSecurity.doorOpenProperty().addListener((obs, oldVal, newVal) -> {
+
+            img.setImage(newVal ? openImg : closedImg);
+
+            styleStatusC(status, newVal);
+
+            toggle.setText(newVal ? "Close" : "Open");
+        });
+
+
+        VBox controls = new VBox(10, status, toggle);
+        controls.setAlignment(Pos.CENTER);
+
+        card.getChildren().add(controls);
+
+        return card;
+    }
+
+    // ──── Temp cards─────────────────────────
+    public VBox outTempSlider() {
+
+        Random random = new Random();
+        CardImages result = makeCard("temp", "Temperature Sensor", "tempSlider", 200);
+
+        VBox card = result.card;
+
+        Label valueLabel = new Label();
+        valueLabel.setStyle(
+                "-fx-font-size: 22px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-text-fill: #1b55cf;"
+        );
+
+
+        // ──── Making the room for first time──────────────────────
+        int initial = (int) tempSensor.getTemperature();
+        valueLabel.setText(initial + " °C");
+
+        // ──── Change temp over time──────────────────────
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(15), e -> {
+
+                    int current = (int) tempSensor.getTemperature();
+
+                    int change = random.nextInt(-3, 4);
+                    current += change;
+
+                    //threshold
+                    if (current < 5) current = 5;
+                    if (current > 40) current = 40;
+
+                    tempSensor.setTemperature(current);
+
+                    valueLabel.setText(current + " °C");
+                })
+        );
+
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+
+        VBox content = new VBox(10, valueLabel);
+        content.setAlignment(Pos.CENTER);
+
+        card.getChildren().add(content);
+
+        return card;
+    }
+
+    // ──── Humidity card ──────────────────────
+    public VBox outHumidity() {
+
+        Random random = new Random();
+
+        CardImages result = makeCard("humidity", "Humidity Sensor", "humidity", 200);
+
+        VBox card = result.card;
+        ImageView img = result.imageView;
+
+
+        Label humidityLabel = new Label();
+
+        humidityLabel.setStyle(
+                "-fx-font-size: 22px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-text-fill: #1b55cf;"
+        );
+
+        // ──── Making the room for first time──────────────────────
+        final int[] humidity = {50};
+
+        humidityLabel.setText(humidity[0] + " %");
+
+
+        // ──── Changing over time ──────────────────────
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(15), e -> {
+
+                    int change = random.nextInt(-10, 11);
+
+                    humidity[0] += change;
+
+                    if (humidity[0] < 10)
+                        humidity[0] = 10;
+
+                    if (humidity[0] > 90)
+                        humidity[0] = 90;
+
+                    humidityLabel.setText(humidity[0] + " %");
+
+                    if (humidity[0] < 30) {
+
+                        waterSystem.setWateringOn(true);
+
+                        humidityLabel.setStyle(
+                                "-fx-font-size: 22px;" +
+                                        "-fx-font-weight: bold;" +
+                                        "-fx-text-fill: #e67e22;"
+                        );
+                    } else if (humidity[0] > 70) {
+
+                        waterSystem.setWateringOn(false);
+
+                        humidityLabel.setStyle(
+                                "-fx-font-size: 22px;" +
+                                        "-fx-font-weight: bold;" +
+                                        "-fx-text-fill: #3498db;"
+                        );
+                    } else {
+
+                        humidityLabel.setStyle(
+                                "-fx-font-size: 22px;" +
+                                        "-fx-font-weight: bold;" +
+                                        "-fx-text-fill: #2ecc71;"
+                        );
+                    }
+                })
+        );
+
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+
+        VBox content = new VBox(10, humidityLabel);
+        content.setAlignment(Pos.CENTER);
+
+        card.getChildren().add(content);
+
+        return card;
+    }
+
+    // ──── Raining card ──────────────────────
+    public VBox outRainingStatus() {
+
+        Random random = new Random();
+
+        CardImages result = makeCard("rains", "Weather Status", "rainsOff.png", 200);
+
+        VBox card = result.card;
+        ImageView img = result.imageView;
+
+        Image rainingImg = new Image(IMAGES + "rainsOn.png");
+        Image sunnyImg = new Image(IMAGES + "rainsOff.png");
+
+
+        // ──── Making the room for first time──────────────────────
+        final boolean[] raining = {false};
+        img.setImage(sunnyImg);
+
+        // ──── Changing over time ──────────────────────
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(15), e -> {
+
+                    raining[0] = random.nextBoolean();
+
+
+                    if (raining[0]) {
+
+                        img.setImage(rainingImg);
+
+                        waterSystem.setWateringOn(false);
+                    } else {
+
+
+                        img.setImage(sunnyImg);
+                    }
+                })
+        );
+
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+
+
+        return card;
+    }
+
+    // ──── Motion sensor cards─────────────────────────
+    public VBox outMotionSensor() {
+
+        Random random = new Random();
+
+        CardImages result = makeCard("motion", "Motion Sensor", "noMotion", 200);
+
+        VBox card = result.card;
+        ImageView img = result.imageView;
+
+        Image motionOn = new Image(IMAGES + "noMotion.png");
+        Image motionOff = new Image(IMAGES + "motion.png");
+
+        Label status = new Label();
+        status.setStyle(
+                "-fx-font-size: 18px;" +
+                        "-fx-font-weight: bold;"
+        );
+
+        // ──── Making the room for first time──────────────────────
+        boolean initial = doorSecurity.isMotionDetected();
+
+        img.setImage(!initial ? motionOn : motionOff);
+
+        styleStatusM(status, !initial);
+
+        // ──── Changing over time──────────────────────
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(15), e -> {
+
+                    boolean motionDetected = random.nextBoolean();
+
+                    if (motionDetected) {
+
+                        img.setImage(motionOn);
+
+                        doorSecurity.setMotionDetected(true);
+
+                    } else {
+
+                        img.setImage(motionOff);
+
+                        doorSecurity.setDoorOpen(false);
+                        doorSecurity.setMotionDetected(false);
+                    }
+
+                    styleStatusM(
+                            status,
+                            doorSecurity.isMotionDetected()
+                    );
+                })
+        );
+
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+
+        VBox content = new VBox(10, status);
+        content.setAlignment(Pos.CENTER);
+
+        card.getChildren().add(content);
+
+        return card;
+    }
+
     //─────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-    // ──── 7. Cameras─────────────────────────
-    public VBox buildCameras() {
+    // ──── 7. Security─────────────────────────
+    public VBox buildSecurity() {
 
-        VBox cam = new VBox(20);
-        cam.setAlignment(Pos.TOP_LEFT);
+        VBox cam = new VBox(0);
+        cam.setPadding(new Insets(20));
 
-        cam.getChildren().add(roomTitle("Security"));
+        GridPane cards = buildCards(
+                new CardConfig(motionSensor(), 1, 1),
+                new CardConfig(cameraVideo(), 1, 1),
+                new CardConfig(nightVision(), 1, 1),
+                new CardConfig(faceCard(), 1, 1),
+                new CardConfig(recStorage(), 1, 1),
+                new CardConfig(emergency(), 1, 1)
+        );
+
+        cards.setMaxWidth(Double.MAX_VALUE);
+        cam.getChildren().addAll(
+                roomTitle("Security"),
+                cards
+        );
+
         return cam;
     }
+
+
+    // ──── Motion sensor cards─────────────────────────
+    public VBox motionSensor() {
+
+        Random random = new Random();
+
+        CardImages result = makeCard("motion", "Motion Sensor", "noMotion", 200);
+
+        VBox card = result.card;
+        ImageView img = result.imageView;
+
+        Image motionOn = new Image(IMAGES + "noMotion.png");
+        Image motionOff = new Image(IMAGES + "motion.png");
+
+        Label status = new Label();
+        status.setStyle(
+                "-fx-font-size: 18px;" +
+                        "-fx-font-weight: bold;"
+        );
+
+        // ──── Making the room for first time──────────────────────
+        boolean initial = doorSecurity.isMotionDetected();
+
+        img.setImage(!initial ? motionOn : motionOff);
+
+        styleStatusM(status, !initial);
+
+        // ──── Changing over time──────────────────────
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(15), e -> {
+
+                    boolean motionDetected = random.nextBoolean();
+
+                    if (motionDetected) {
+
+                        img.setImage(motionOn);
+
+                        doorSecurity.setMotionDetected(true);
+
+                    } else {
+
+                        img.setImage(motionOff);
+
+                        doorSecurity.setDoorOpen(false);
+                        doorSecurity.setMotionDetected(false);
+                    }
+
+                    styleStatusM(
+                            status,
+                            doorSecurity.isMotionDetected()
+                    );
+                })
+        );
+
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+
+        VBox content = new VBox(10, status);
+        content.setAlignment(Pos.CENTER);
+
+        card.getChildren().add(content);
+
+        return card;
+    }
+
+    // ──── Camera video cards─────────────────────────
+    public VBox cameraVideo() {
+
+        CardImages result = makeCard("cam", "Camera Video", "cam", 300);
+        VBox card = result.card;
+        ImageView img = result.imageView;
+
+        Image onImg = new Image(IMAGES + "cam.png");
+        Image offImg = new Image(IMAGES + "onCam.png");
+
+        // ──── Making the room for first time──────────────────────
+        boolean initial = !doorSecurity.isMotionDetected();
+        img.setImage(initial ? onImg : offImg);
+
+        // ──── Changing (image - status)──────────────────────
+        doorSecurity.motionDetectedProperty().addListener((obs, oldVal, newVal) -> {
+
+            img.setImage(!newVal ? onImg : offImg);
+            doorSecurity.setMotionDetected(newVal);
+        });
+
+        // ──── Changing over time ─────────────────
+        Timeline autoChange = new Timeline(
+                new KeyFrame(Duration.seconds(15), e -> {
+                    doorSecurity.setMotionDetected(!doorSecurity.isMotionDetected());
+                })
+        );
+
+        autoChange.setCycleCount(Animation.INDEFINITE);
+        autoChange.play();
+
+        VBox controls = new VBox(10);
+        controls.setAlignment(Pos.CENTER);
+
+        card.getChildren().add(controls);
+
+        return card;
+    }
+
+    // ──── night vision cards─────────────────────────
+    public VBox nightVision() {
+
+        CardImages result = makeCard("nightVision", "Night Vision", "visionOn", 250);
+        VBox card = result.card;
+        ImageView img = result.imageView;
+
+        Image onImg = new Image(IMAGES + "visionOn.png");
+        Image offImg = new Image(IMAGES + "visionOff.png");
+
+        Label status = new Label();
+
+        Button toggle = new Button("Toggle");
+
+        toggle.setStyle(
+                "-fx-background-color: #1b55cf;" +
+                        "-fx-text-fill: white;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-background-radius: 10;"
+        );
+
+        // ──── Making the room for first time──────────────────────
+        boolean initial = camera.isNightVision();
+
+        img.setImage(initial ? onImg : offImg);
+        styleStatusO(status, initial);
+
+        toggle.setOnAction(e -> {
+            camera.setNightVision(!camera.isNightVision());
+        });
+
+        // ──── Changing (image - status - bt)──────────────────────
+        camera.nightVisionProperty().addListener((obs, oldVal, newVal) -> {
+            img.setImage(newVal ? onImg : offImg);
+            styleStatusO(status, newVal);
+        });
+
+        VBox content = new VBox(10, img, status, toggle);
+        content.setAlignment(Pos.CENTER);
+
+        card.getChildren().add(content);
+
+        return card;
+    }
+
+    // ──── face card cards─────────────────────────
+    public VBox faceCard() {
+
+        CardImages result = makeCard("face", "Face Recognition", "face", 200);
+        VBox card = result.card;
+        ImageView img = result.imageView;
+
+        Image faceOn = new Image(IMAGES + "faceOn.png");
+        Image faceOff = new Image(IMAGES + "faceOff.png");
+
+        Label status = new Label("Waiting... ");
+        status.setStyle("-fx-text-fill: #d62828;-fx-font-size: 18px; -fx-font-weight: bold;");
+
+        Button scanBtn = new Button("Scan");
+
+        scanBtn.setStyle(
+                "-fx-background-color: #1b55cf;" +
+                        "-fx-text-fill: white;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-background-radius: 10;"
+        );
+
+        // ──── Making the room for first time──────────────────────
+        img.setImage(faceOff);
+
+        // ──── Changing (image - status - bt)──────────────────────
+        scanBtn.setOnAction(e -> {
+
+            img.setImage(faceOn);
+            status.setText("Face Detected");
+            status.setStyle("-fx-text-fill: #2ecc71;-fx-font-size: 18px; -fx-font-weight: bold;");
+
+            // ──── Changing over time ─────────────────
+            Timeline reset = new Timeline(
+                    new KeyFrame(Duration.seconds(3), ev -> {
+                        img.setImage(faceOff);
+                        status.setText("Waiting...");
+                        status.setStyle("-fx-text-fill: #d62828;-fx-font-size: 18px; -fx-font-weight: bold;");
+                    })
+            );
+
+            reset.play();
+        });
+
+        VBox controls = new VBox(10, status, scanBtn);
+        controls.setAlignment(Pos.CENTER);
+
+        card.getChildren().add(controls);
+
+        return card;
+    }
+
+    // ──── storage cards─────────────────────────
+    public VBox recStorage() {
+
+        CardImages result = makeCard("storage", "Recording Storage", "good", 200);
+        VBox card = result.card;
+        ImageView img = result.imageView;
+
+        Image goodImg = new Image(IMAGES + "good.png");
+        Image fullImg = new Image(IMAGES + "full.png");
+
+        Label sizeLabel = new Label();
+
+        final int[] size = {0};
+        final boolean[] isFull = {false};
+
+        // ──── Making the room for first time──────────────────────
+        img.setImage(goodImg);
+        sizeLabel.setText("0 MB");
+        sizeLabel.setStyle(
+                "-fx-text-fill: #1b55cf;" +
+                        "-fx-font-size: 16px;" +
+                        "-fx-font-weight: bold;"
+        );
+
+        // ──── Changing over time ─────────────────
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.minutes(30), e -> {
+
+                    if (isFull[0]) return;
+
+                    size[0]++;
+
+                    if (size[0] >= 521) {
+                        size[0] = 521;
+                        isFull[0] = true;
+
+                        img.setImage(fullImg);
+                        sizeLabel.setText("FULL 521 MB");
+                        sizeLabel.setStyle(
+                                "-fx-text-fill: #1b55cf;" +
+                                        "-fx-font-size: 16px;" +
+                                        "-fx-font-weight: bold;"
+                        );
+
+                    } else {
+                        sizeLabel.setText(size[0] + " MB");
+                        sizeLabel.setStyle(
+                                "-fx-text-fill: #1b55cf;" +
+                                        "-fx-font-size: 16px;" +
+                                        "-fx-font-weight: bold;"
+                        );
+                    }
+                })
+        );
+
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+
+        VBox content = new VBox(10, img, sizeLabel);
+        content.setAlignment(Pos.CENTER);
+
+        card.getChildren().add(content);
+
+        return card;
+    }
+
+    // ──── emergency cards─────────────────────────
+    public VBox emergency() {
+
+        CardImages result = makeCard("emergency", "Emergency System", "noEmerg", 200);
+        VBox card = result.card;
+        ImageView img = result.imageView;
+
+        Image safeImg = new Image(IMAGES + "noEmerg.png");
+        Image dangerImg = new Image(IMAGES + "emerg.png");
+
+        Label status = new Label();
+
+        // ──── Making the room for first time──────────────────────
+        boolean initial = camera.getEmergency();
+        img.setImage(initial ? dangerImg : safeImg);
+        styleStatusN(status, !initial);
+
+        // ──── Changing (image - status)──────────────────────
+        camera.emergencyProperty().addListener((obs, oldVal, newVal) -> {
+
+            if (newVal) {
+                img.setImage(dangerImg);
+                styleStatusN(status, !newVal);
+                masterRoom.setDoorOpen(true);
+                doorSecurity.setDoorOpen(true);
+            } else {
+                img.setImage(safeImg);
+                styleStatusN(status, !newVal);
+                masterRoom.setDoorOpen(false);
+                doorSecurity.setDoorOpen(false);
+            }
+        });
+
+        // ──── Changing over time ─────────────────
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(30), e -> {
+                    camera.setEmergency(!camera.getEmergency());
+                })
+        );
+
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+
+        VBox content = new VBox(10, img, status);
+        content.setAlignment(Pos.CENTER);
+
+        card.getChildren().add(content);
+
+        return card;
+    }
+
+    //─────────────────────────────────────────────────────────────────────────────────────────────────────────
 
     // ──── All status style (ON / OFF)───────────────────
     public void styleStatusO(Label status, boolean state) {
@@ -2808,23 +3553,46 @@ public class SmartHomePanel extends Application {
         }
     }
 
+    // ──── Safe toggle───────────────────
+    public void styleStatusN(Label status, boolean state) {
+        if (state) {
+            status.setStyle("-fx-text-fill: #2ecc71;-fx-font-size: 18px; -fx-font-weight: bold;");
+            status.setText("No emergency");
+        } else {
+            status.setStyle("-fx-text-fill: #d62828;-fx-font-size: 18px; -fx-font-weight: bold;");
+            status.setText("Emergency");
+        }
+    }
+
+    // ──── All status style (No motion detected / motion detected)───────────────────
+    public void styleStatusM(Label status, boolean state) {
+        if (state) {
+            status.setStyle("-fx-text-fill: #2ecc71;-fx-font-size: 18px; -fx-font-weight: bold;");
+            status.setText("No motion detected");
+        } else {
+            status.setStyle("-fx-text-fill: #d62828;-fx-font-size: 18px; -fx-font-weight: bold;");
+            status.setText("motion detected");
+        }
+    }
+
     // ──── Set alarm───────────────────
     public VBox buildAlarm() {
 
-        VBox alarmCard = new VBox(15);
+        VBox card = new VBox(15);
 
-        alarmCard.setPadding(new Insets(15));
+        card.setPadding(new Insets(15));
 
-        alarmCard.setPrefWidth(300);
-        alarmCard.setPrefHeight(160);
+        card.setPrefWidth(300);
+        card.setPrefHeight(160);
 
-        alarmCard.setStyle(
+        card.setStyle(
                 "-fx-background-color: white;" +
                         "-fx-background-radius: 18;" +
                         "-fx-border-radius: 18;" +
                         "-fx-border-color: #dfe7f2;"
         );
 
+        // ──── Title ───────────────────
         Label title = new Label("Alarm");
 
         title.setStyle(
@@ -2871,7 +3639,7 @@ public class SmartHomePanel extends Application {
         status.setStyle(
                 "-fx-font-size: 15px;" +
                         "-fx-font-weight: bold;" +
-                        "-fx-text-fill: #062b99;"
+                        "-fx-text-fill: #1b55cf;"
         );
 
         // ──── Message ───────────────────
@@ -2879,7 +3647,7 @@ public class SmartHomePanel extends Application {
 
         msg.setStyle(
                 "-fx-font-size: 13px;" +
-                        "-fx-text-fill: #062b99;"
+                        "-fx-text-fill: #666;"
         );
 
         // ──── Enable button ───────────────────
@@ -2914,6 +3682,17 @@ public class SmartHomePanel extends Application {
 
             int hour = Integer.parseInt(hourBox.getValue());
             int minute = Integer.parseInt(minuteBox.getValue());
+
+            String period = ampmBox.getValue();
+
+            // convert to 24h
+            if (period.equals("PM") && hour != 12) {
+                hour += 12;
+            }
+
+            if (period.equals("AM") && hour == 12) {
+                hour = 0;
+            }
 
             LocalTime alarmTime = LocalTime.of(hour, minute);
 
@@ -2955,7 +3734,7 @@ public class SmartHomePanel extends Application {
             stopBtn.setVisible(false);
         });
 
-        alarmCard.getChildren().addAll(
+        card.getChildren().addAll(
                 title,
                 timeRow,
                 status,
@@ -2964,8 +3743,6 @@ public class SmartHomePanel extends Application {
                 stopBtn
         );
 
-        allCards.add(alarmCard);
-
-        return alarmCard;
+        return card;
     }
 }

@@ -241,20 +241,4 @@ public class MasterRoom extends SmartDevice {
         alarmThread.start();
         updateStatus("Alarm set for " + alarmTime);
     }
-
-    public void startAlarmSound() {
-
-        if (alarmPlaying) return;
-
-        alarmTimeline = new Timeline(
-                new KeyFrame(Duration.seconds(0.5), e -> {
-                    
-                })
-        );
-
-        alarmTimeline.setCycleCount(Animation.INDEFINITE);
-        alarmTimeline.play();
-
-        alarmPlaying = true;
-    }
 }
