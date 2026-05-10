@@ -7,7 +7,11 @@
  *                  5. TV controller.
  */
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.property.*;
+import javafx.util.Duration;
 
 import java.time.LocalTime;
 import java.util.Scanner;
@@ -15,22 +19,24 @@ import java.util.Scanner;
 public class MasterRoom extends SmartDevice {
 
     // ───Attributes────────────────────────────────────────────
-    private final BooleanProperty doorLocked = new SimpleBooleanProperty(false);
+    private final BooleanProperty doorOpen = new SimpleBooleanProperty(false);
     private final BooleanProperty lightsOn = new SimpleBooleanProperty(false);
     private final DoubleProperty temperature = new SimpleDoubleProperty(0);
     private final StringProperty smartScene = new SimpleStringProperty("");
     private final BooleanProperty acOn = new SimpleBooleanProperty(false);
     private final BooleanProperty tvOn = new SimpleBooleanProperty(false);
+    private Timeline alarmTimeline;
+    private boolean alarmPlaying = false;
 
     // ──────Constructor───────────────────────────────────────
     public MasterRoom(String deviceId, String name, String room, boolean lightsOn, double temperature,
-                      boolean acOn, String smartScene, boolean doorLocked, boolean tvOn) {
+                      boolean acOn, String smartScene, boolean doorOpen, boolean tvOn) {
         super(deviceId, name, room);
 
         this.lightsOn.set(lightsOn);
         this.acOn.set(acOn);
         this.smartScene.set(smartScene);
-        this.doorLocked.set(doorLocked);
+        this.doorOpen.set(doorOpen);
         this.tvOn.set(tvOn);
 
         this.temperature.addListener((obs, oldV, newV) -> configAC());
@@ -40,8 +46,8 @@ public class MasterRoom extends SmartDevice {
     }
 
     // ─────JavaFX property & binding───────────────────────
-    public BooleanProperty doorLockedProperty() {
-        return doorLocked;
+    public BooleanProperty doorOpenProperty() {
+        return doorOpen;
     }
 
     public BooleanProperty lightsOnProperty() {
@@ -70,7 +76,7 @@ public class MasterRoom extends SmartDevice {
         updateStatus(String.format("Lights=%s AC=%s Door=%s TV=%s",
                 isLightsOn() ? "ON" : "OFF",
                 isAcOn() ? "ON" : "OFF",
-                isDoorLocked() ? "LOCKED" : "UNLOCKED",
+                isDoorOpen() ? "LOCKED" : "UNLOCKED",
                 isTvOn() ? "ON" : "OFF"));
     }
 
@@ -101,12 +107,12 @@ public class MasterRoom extends SmartDevice {
             }
 
             case "lock door" -> {
-                setDoorLocked(true);
+                setDoorOpen(true);
                 updateStatus("Door Locked");
             }
 
             case "unlock door" -> {
-                setDoorLocked(false);
+                setDoorOpen(false);
                 updateStatus("Door Unlocked");
             }
 
@@ -129,7 +135,7 @@ public class MasterRoom extends SmartDevice {
     public String getStatusIcon() {
         return (lightsOn.get() ? " 💡 " : " 🌑 ") +
                 (acOn.get() ? " ❄ " : " 🔥 ") +
-                (doorLocked.get() ? " 🔒 " : " 🔓 ") +
+                (doorOpen.get() ? " 🔒 " : " 🔓 ") +
                 (tvOn.get() ? " 📺 " : " 📴 ");
     }
 
@@ -167,12 +173,12 @@ public class MasterRoom extends SmartDevice {
         applyScene();
     }
 
-    public boolean isDoorLocked() {
-        return doorLocked.get();
+    public boolean isDoorOpen() {
+        return doorOpen.get();
     }
 
-    public void setDoorLocked(boolean doorLocked) {
-        this.doorLocked.set(doorLocked);
+    public void setDoorOpen(boolean doorLocked) {
+        this.doorOpen.set(doorLocked);
     }
 
     public boolean isTvOn() {
@@ -205,21 +211,22 @@ public class MasterRoom extends SmartDevice {
 
             case "sleep mode" -> {
                 setLightsOn(false);
-                setDoorLocked(true);
+                setDoorOpen(false);
                 setTvOn(false);
                 updateStatus("Sleep Mode Activated");
             }
 
             case "romance mode" -> {
                 setLightsOn(true);
-                setDoorLocked(true);
+                setDoorOpen(false);
                 updateStatus("Romance Mode Activated");
             }
 
             case "relax mode" -> {
                 setLightsOn(true);
                 setTvOn(true);
-                setDoorLocked(true);
+                setDoorOpen(false);
+                setAcOn(true);
                 updateStatus("Relax Mode Activated");
             }
 

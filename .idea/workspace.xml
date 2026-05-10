@@ -4,12 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="master room&#10;kids room&#10;bathroom">
+    <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="half of javafx">
+      <change afterPath="$PROJECT_DIR$/Project/comments" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Bathroom.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Bathroom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/KidsRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/KidsRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/AlarmTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/AlarmTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Door_security.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Door_security.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/ExternalTempSensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/ExternalTempSensor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/GardenWaterSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/GardenWaterSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/MasterRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/MasterRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/mainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/mainApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/MotionSensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/MotionSensor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/SmartHomePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/SmartHomePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +24,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -63,6 +69,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.JavaFX.executor": "Run",
+    "Application.SmartHomePanel.executor": "Run",
     "Application.mainApp.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -78,6 +86,13 @@
     "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Java"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\SmartHome\Project\resources\alarmSound" />
+      <recent name="D:\SmartHome\Project\resources" />
+      <recent name="D:\SmartHome\Project" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -101,7 +116,31 @@
       <option name="project" value="LOCAL" />
       <updated>1777824766942</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="master room&#10;kids room&#10;bathroom">
+      <option name="closed" value="true" />
+      <created>1777898024208</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1777898024208</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added alarm and Omar's classes">
+      <option name="closed" value="true" />
+      <created>1778128692430</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1778128692430</updated>
+    </task>
+    <task id="LOCAL-00004" summary="half of javafx">
+      <option name="closed" value="true" />
+      <created>1778418662348</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1778418662348</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -117,7 +156,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="master room&#10;kids room&#10;bathroom" />
-    <option name="LAST_COMMIT_MESSAGE" value="master room&#10;kids room&#10;bathroom" />
+    <MESSAGE value="added alarm and Omar's classes" />
+    <MESSAGE value="half of javafx" />
+    <option name="LAST_COMMIT_MESSAGE" value="half of javafx" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
