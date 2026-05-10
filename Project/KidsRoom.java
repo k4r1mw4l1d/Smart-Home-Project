@@ -23,14 +23,13 @@ public class KidsRoom extends SmartDevice {
     // ──────Constructor───────────────────────────────────────
     public KidsRoom(String deviceId, String name, String room,
                     boolean lightsOn, double temperature, boolean acOn, boolean babySafety, boolean bedTime,
-                    boolean awake, MasterRoom masterRoom) {
+                    boolean awake) {
         super(deviceId, name, room);
         this.lightsOn.set(lightsOn);
         this.acOn.set(acOn);
         this.babySafety.set(babySafety);
         this.bedTime.set(bedTime);
         this.awake.set(awake);
-        this.masterRoom = masterRoom;
 
         this.temperature.addListener((obs, oldV, newV) -> configAC());
         this.temperature.set(temperature);
@@ -173,28 +172,40 @@ public class KidsRoom extends SmartDevice {
         this.awake.set(awake);
     }
 
+    public void setMasterRoom(MasterRoom masterRoom) {
+        this.masterRoom = masterRoom;
+    }
+
     //───────Bed time mode─────────────────────────────
     public void bedTimeMode() {
 
-        if (bedTime.get()) return;
         setBedTime(true);
+        setAwake(false);
         setLightsOn(false);
         setAcOn(false);
         setBabySafety(true);
-        setAwake(false);
-        updateStatus("It's bed time");
+
+        updateStatus("Sleep mode ON");
     }
 
     // ───────Motion handler for kids───────────────────
     public void motionDetector() {
 
+        if (bedTime.get()) {
+            updateStatus("Motion ignored (Sleep mode active)");
+            return;
+        }
+
         setAwake(true);
-        setBedTime(false);
         setLightsOn(true);
         setBabySafety(true);
+        setAcOn(false);
+
         if (masterRoom != null) {
             masterRoom.setLightsOn(true);
+            masterRoom.setDoorOpen(true);
         }
+
         updateStatus("Motion detected -> Child awake");
     }
 
