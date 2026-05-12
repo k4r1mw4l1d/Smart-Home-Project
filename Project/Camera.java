@@ -296,6 +296,7 @@ public class Camera extends SmartDevice implements Alertable {
         return storageUsedGB.get();
     }
 
+
     public double getStorageMaxGB() {
         return storageMaxGB.get();
     }
