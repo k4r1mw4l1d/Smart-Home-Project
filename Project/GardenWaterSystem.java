@@ -245,7 +245,6 @@ public class GardenWaterSystem extends SmartDevice {
         return scheduleTime.get();
     }
 
-
     public void setScheduleTime(String v) {
         scheduleTime.set(v);
     }

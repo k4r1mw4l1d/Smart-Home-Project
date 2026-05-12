@@ -177,7 +177,6 @@ public class MotionSensor extends SmartDevice implements Alertable {
         sensitivity = v;
     }
 
-
     // ─── Sensitivity enum ─────────────────────────────────
     public enum Sensitivity {LOW, MEDIUM, HIGH}
 }
