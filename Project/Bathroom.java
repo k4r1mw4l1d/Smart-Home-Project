@@ -14,17 +14,17 @@ public class Bathroom extends SmartDevice {
     private final BooleanProperty lightsOn = new SimpleBooleanProperty(false);
     private final BooleanProperty occupied = new SimpleBooleanProperty(false);
     private final BooleanProperty heaterOn = new SimpleBooleanProperty(false);
-    private final BooleanProperty doorLocked = new SimpleBooleanProperty(false);
+    private final BooleanProperty doorOpen = new SimpleBooleanProperty(false);
     private final DoubleProperty waterTemperature = new SimpleDoubleProperty(0);
 
     // ──────Constructor───────────────────────────────────────
     public Bathroom(String deviceId, String name, String room,
-                    boolean lightsOn, boolean occupied, boolean heaterOn, double waterTemperature, boolean doorLocked) {
+                    boolean lightsOn, boolean occupied, boolean heaterOn, double waterTemperature, boolean doorOpen) {
         super(deviceId, name, room);
         this.lightsOn.set(lightsOn);
         this.occupied.set(occupied);
         this.heaterOn.set(heaterOn);
-        this.doorLocked.set(doorLocked);
+        this.doorOpen.set(doorOpen);
 
         this.waterTemperature.addListener((obs, oldV, newV) -> configHeater());
         this.waterTemperature.set(waterTemperature);
@@ -39,7 +39,7 @@ public class Bathroom extends SmartDevice {
                 "Lights=%s Occupied=%s Door=%s Heater=%s WaterTemp=%.2f",
                 isLightsOn() ? "ON" : "OFF",
                 isOccupied() ? "YES" : "NO",
-                isDoorLocked() ? "LOCKED" : "UNLOCKED",
+                isDoorOpen() ? "LOCKED" : "UNLOCKED",
                 isHeaterOn() ? "ON" : "OFF",
                 getWaterTemperature()));
     }
@@ -61,8 +61,8 @@ public class Bathroom extends SmartDevice {
         return waterTemperature;
     }
 
-    public BooleanProperty doorLockedProperty() {
-        return doorLocked;
+    public BooleanProperty doorOpenProperty() {
+        return doorOpen;
     }
 
     // ────Sending commands to devices─────────────────────
@@ -90,11 +90,11 @@ public class Bathroom extends SmartDevice {
             case "exit" -> exitingBathroom();
 
             case "lock door" -> {
-                setDoorLocked(true);
+                setDoorOpen(true);
                 updateStatus("Door locked");
             }
             case "unlock door" -> {
-                setDoorLocked(false);
+                setDoorOpen(false);
                 updateStatus("Door unlocked");
             }
 
@@ -108,7 +108,7 @@ public class Bathroom extends SmartDevice {
         return (lightsOn.get() ? " 💡 " : " 🌑 ") +
                 (heaterOn.get() ? " 🔥 " : " ❄ ") +
                 (occupied.get() ? " 🚶 " : " 🚪 ") +
-                (doorLocked.get() ? " 🔒 " : " 🔓 ");
+                (doorOpen.get() ? " 🔒 " : " 🔓 ");
     }
 
     // ───────Setter & Getters───────────────────────────────
@@ -144,18 +144,18 @@ public class Bathroom extends SmartDevice {
         this.heaterOn.set(heaterOn);
     }
 
-    public boolean isDoorLocked() {
-        return doorLocked.get();
+    public boolean isDoorOpen() {
+        return doorOpen.get();
     }
 
-    public void setDoorLocked(boolean doorLocked) {
-        this.doorLocked.set(doorLocked);
+    public void setDoorOpen(boolean doorOpen) {
+        this.doorOpen.set(doorOpen);
     }
 
     //───────Enter & Exit bathroom─────────────────────────────
     public void enteringBathroom() {
 
-        if (!doorLocked.get()) {
+        if (!doorOpen.get()) {
             setOccupied(true);
             setLightsOn(true);
             updateStatus("Bathroom occupied");
@@ -165,7 +165,7 @@ public class Bathroom extends SmartDevice {
     }
 
     public void exitingBathroom() {
-        if (!doorLocked.get()) {
+        if (!doorOpen.get()) {
             setOccupied(false);
             setLightsOn(false);
             updateStatus("Bathroom is free");

@@ -20,16 +20,18 @@ public class LivingRoom extends SmartDevice {
     private final StringProperty smartScene = new SimpleStringProperty("");
 
     // ──────Constructor───────────────────────────────────────
-    public LivingRoom(String deviceId, String name, String room, boolean lightsOn, double temperature, boolean acOn, boolean curtainsOn, boolean tvOn) {
+    public LivingRoom(String deviceId, String name, String room, boolean lightsOn,
+                      double temperature, boolean acOn, boolean curtainsOn, boolean tvOn, String smartScene) {
         super(deviceId, name, room);
         this.lightsOn.set(lightsOn);
         this.temperature.addListener((obs, oldV, newV) -> configAC());
         this.temperature.set(temperature);
-        updateStatus("Device Initialized");
         this.acOn.set(acOn);
         this.curtainsOn.set(curtainsOn);
         this.tvOn.set(tvOn);
+        this.smartScene.set(smartScene);
 
+        updateStatus("Device Initialized");
     }
 
     // ─────JavaFX property & binding───────────────────────
@@ -200,12 +202,14 @@ public class LivingRoom extends SmartDevice {
             case "movie mode" -> {
                 setLightsOn(false);
                 setTvOn(true);
+                setCurtainsOn(false);
                 updateStatus("Movie mode Activated");
             }
 
             case "night mode" -> {
                 setLightsOn(false);
                 setTvOn(false);
+                setCurtainsOn(false);
                 updateStatus("Night Mode Activated");
             }
 
