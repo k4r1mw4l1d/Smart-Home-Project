@@ -184,6 +184,7 @@ public class ExternalTempSensor extends SmartDevice implements Alertable {
         frostThreshold = v;
     }
 
+
     public String getWeatherDesc() {
         return weatherDesc.get();
     }

@@ -139,6 +139,7 @@ public class Door_security extends SmartDevice implements Alertable {
         return motionDetected.get();
     }
 
+
     public void setMotionDetected(boolean v) {
         motionDetected.set(v);
     }
