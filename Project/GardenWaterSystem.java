@@ -19,6 +19,7 @@ public class GardenWaterSystem extends SmartDevice {
     private static final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("HH:mm:ss");
     // ───Attributes────────────────────────────────────────────
     private final BooleanProperty wateringOn = new SimpleBooleanProperty(false);
+    private final DoubleProperty humidity = new SimpleDoubleProperty(0);
     private final DoubleProperty soilMoisture = new SimpleDoubleProperty(0);   // 0–100 %
     private final BooleanProperty rainDetected = new SimpleBooleanProperty(false);
     private final BooleanProperty autoModeOn = new SimpleBooleanProperty(false);
@@ -32,10 +33,11 @@ public class GardenWaterSystem extends SmartDevice {
     // ──────Constructor───────────────────────────────────────
     public GardenWaterSystem(String deviceId, String name, String room,
                              boolean wateringOn, double soilMoisture,
-                             boolean rainDetected, boolean autoModeOn) {
+                             boolean rainDetected, boolean autoModeOn, double humidity) {
         super(deviceId, name, room);
         this.rainDetected.set(rainDetected);
         this.autoModeOn.set(autoModeOn);
+        this.humidity.set(humidity);
 
         // Listener: auto-mode reacts to soil moisture changes
         this.soilMoisture.addListener((obs, oldV, newV) -> {
@@ -153,6 +155,10 @@ public class GardenWaterSystem extends SmartDevice {
         return wateringOn;
     }
 
+    public DoubleProperty humidityProperty() {
+        return humidity;
+    }
+
     public DoubleProperty soilMoistureProperty() {
         return soilMoisture;
     }
@@ -180,6 +186,14 @@ public class GardenWaterSystem extends SmartDevice {
 
     public void setWateringOn(boolean v) {
         wateringOn.set(v);
+    }
+
+    public double getHumidity() {
+        return humidity.get();
+    }
+
+    public void setHumidity(double v) {
+        humidity.set(v);
     }
 
     public double getSoilMoisture() {

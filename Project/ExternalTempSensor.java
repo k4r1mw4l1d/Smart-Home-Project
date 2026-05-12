@@ -20,7 +20,6 @@ public class ExternalTempSensor extends SmartDevice implements Alertable {
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     // ───Attributes────────────────────────────────────────────
     private final DoubleProperty temperature = new SimpleDoubleProperty(0);
-    private final DoubleProperty humidity = new SimpleDoubleProperty(0);
     private final StringProperty weatherDesc = new SimpleStringProperty("Unknown");
     private final DoubleProperty dailyMinTemp = new SimpleDoubleProperty(Double.MAX_VALUE);
     private final DoubleProperty dailyMaxTemp = new SimpleDoubleProperty(Double.MIN_VALUE);
@@ -33,13 +32,11 @@ public class ExternalTempSensor extends SmartDevice implements Alertable {
     public ExternalTempSensor(String deviceId, String name, String room,
                               double temperature, double humidity) {
         super(deviceId, name, room);
-        this.humidity.set(humidity);
 
         // Listener fires threshold checks on every temperature change
         this.temperature.addListener((obs, oldV, newV) -> {
             updateDailyMinMax(newV.doubleValue());
             checkThresholds(newV.doubleValue());
-            updateWeatherDesc(newV.doubleValue(), this.humidity.get());
         });
         this.temperature.set(temperature);
 
@@ -50,8 +47,8 @@ public class ExternalTempSensor extends SmartDevice implements Alertable {
     @Override
     public void readState() {
         updateStatus(String.format(
-                "Temp=%.1f°C Humidity=%.1f%% Condition=%s Min=%.1f°C Max=%.1f°C",
-                getTemperature(), getHumidity(), weatherDesc.get(),
+                "Temp=%.1f°C Condition=%s Min=%.1f°C Max=%.1f°C",
+                getTemperature(), weatherDesc.get(),
                 getDailyMinTemp(), getDailyMaxTemp()));
     }
 
@@ -138,10 +135,6 @@ public class ExternalTempSensor extends SmartDevice implements Alertable {
         return temperature;
     }
 
-    public DoubleProperty humidityProperty() {
-        return humidity;
-    }
-
     public StringProperty weatherDescProperty() {
         return weatherDesc;
     }
@@ -165,14 +158,6 @@ public class ExternalTempSensor extends SmartDevice implements Alertable {
 
     public void setTemperature(double v) {
         temperature.set(v);
-    }
-
-    public double getHumidity() {
-        return humidity.get();
-    }
-
-    public void setHumidity(double v) {
-        humidity.set(v);
     }
 
     public double getDailyMinTemp() {

@@ -28,6 +28,7 @@ public class Camera extends SmartDevice implements Alertable {
     private final DoubleProperty storageUsedGB = new SimpleDoubleProperty(0);
     private final DoubleProperty storageMaxGB = new SimpleDoubleProperty(128);
     private final StringProperty resolution = new SimpleStringProperty("1080p");
+    private final BooleanProperty emergency = new SimpleBooleanProperty(false);
     private final List<String> alertHistory = new ArrayList<>();
     private final List<String> recordingLog = new ArrayList<>();
 
@@ -35,12 +36,13 @@ public class Camera extends SmartDevice implements Alertable {
     public Camera(String deviceId, String name, String room,
                   boolean recording, boolean nightVision,
                   boolean motionRecord, String resolution,
-                  double storageMaxGB) {
+                  double storageMaxGB, boolean emergency) {
         super(deviceId, name, room);
         this.nightVision.set(nightVision);
         this.motionRecord.set(motionRecord);
         this.resolution.set(resolution);
         this.storageMaxGB.set(storageMaxGB);
+        this.emergency.set(emergency);
 
         // Listener: auto-record when motion is detected (if enabled)
         this.motionDetected.addListener((obs, oldV, newV) -> {
@@ -245,6 +247,10 @@ public class Camera extends SmartDevice implements Alertable {
         return resolution;
     }
 
+    public BooleanProperty emergencyProperty() {
+        return emergency;
+    }
+
     // ───────Setter & Getters───────────────────────────────
     public boolean isRecording() {
         return recording.get();
@@ -300,5 +306,13 @@ public class Camera extends SmartDevice implements Alertable {
 
     public void setResolution(String v) {
         resolution.set(v);
+    }
+
+    public boolean getEmergency() {
+        return emergency.get();
+    }
+
+    public void setEmergency(boolean v) {
+        this.emergency.set(v);
     }
 }

@@ -20,7 +20,7 @@ public class Door_security extends SmartDevice implements Alertable {
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     // ───Attributes────────────────────────────────────────────
     private final BooleanProperty doorOpen = new SimpleBooleanProperty(false);
-    private final BooleanProperty doorLocked = new SimpleBooleanProperty(false);
+    private final BooleanProperty motionDetected = new SimpleBooleanProperty(false);
     private final BooleanProperty alarmTriggered = new SimpleBooleanProperty(false);
     private final StringProperty lastEvent = new SimpleStringProperty("None");
     private final List<String> alertHistory = new ArrayList<>();
@@ -28,18 +28,11 @@ public class Door_security extends SmartDevice implements Alertable {
 
     // ──────Constructor───────────────────────────────────────
     public Door_security(String deviceId, String name, String room,
-                         boolean doorOpen, boolean doorLocked) {
+                         boolean doorOpen, boolean motionDetected) {
         super(deviceId, name, room);
         this.doorOpen.set(doorOpen);
-        this.doorLocked.set(doorLocked);
+        this.motionDetected.set(motionDetected);
 
-        // Listener: if door opens while locked → intrusion alert
-        this.doorOpen.addListener((obs, oldV, newV) -> {
-            if (newV && isDoorLocked()) {
-                triggerAlert("⚠ INTRUSION ALERT: Door forced open while locked!");
-            }
-            logEntry(newV ? "Door OPENED" : "Door CLOSED");
-        });
 
         updateStatus("Device Initialized");
     }
@@ -49,7 +42,6 @@ public class Door_security extends SmartDevice implements Alertable {
     public void readState() {
         updateStatus(String.format("Door=%s Locked=%s Alarm=%s LastEvent=%s",
                 isDoorOpen() ? "OPEN" : "CLOSED",
-                isDoorLocked() ? "LOCKED" : "UNLOCKED",
                 isAlarmTriggered() ? "TRIGGERED" : "CLEAR",
                 lastEvent.get()));
     }
@@ -67,19 +59,7 @@ public class Door_security extends SmartDevice implements Alertable {
                 setDoorOpen(false);
                 updateStatus("Door CLOSED");
             }
-            case "lock door" -> {
-                if (isDoorOpen()) {
-                    updateStatus("Cannot lock: door is open!");
-                } else {
-                    setDoorLocked(true);
-                    updateStatus("Door LOCKED");
-                }
-            }
-            case "unlock door" -> {
-                setDoorLocked(false);
-                setAlarmTriggered(false);
-                updateStatus("Door UNLOCKED");
-            }
+
             case "reset alarm" -> {
                 setAlarmTriggered(false);
                 updateStatus("Alarm RESET");
@@ -92,7 +72,6 @@ public class Door_security extends SmartDevice implements Alertable {
     @Override
     public String getStatusIcon() {
         return (doorOpen.get() ? " 🚪 " : " 🔐 ") +
-                (doorLocked.get() ? " 🔒 " : " 🔓 ") +
                 (alarmTriggered.get() ? " 🚨 " : " ✅ ");
     }
 
@@ -127,16 +106,16 @@ public class Door_security extends SmartDevice implements Alertable {
         return doorOpen;
     }
 
-    public BooleanProperty doorLockedProperty() {
-        return doorLocked;
-    }
-
     public BooleanProperty alarmTriggeredProperty() {
         return alarmTriggered;
     }
 
     public StringProperty lastEventProperty() {
         return lastEvent;
+    }
+
+    public BooleanProperty motionDetectedProperty() {
+        return motionDetected;
     }
 
     // ───────Setter & Getters───────────────────────────────
@@ -148,19 +127,19 @@ public class Door_security extends SmartDevice implements Alertable {
         doorOpen.set(v);
     }
 
-    public boolean isDoorLocked() {
-        return doorLocked.get();
-    }
-
-    public void setDoorLocked(boolean v) {
-        doorLocked.set(v);
-    }
-
     public boolean isAlarmTriggered() {
         return alarmTriggered.get();
     }
 
     public void setAlarmTriggered(boolean v) {
         alarmTriggered.set(v);
+    }
+
+    public boolean isMotionDetected() {
+        return motionDetected.get();
+    }
+
+    public void setMotionDetected(boolean v) {
+        motionDetected.set(v);
     }
 }

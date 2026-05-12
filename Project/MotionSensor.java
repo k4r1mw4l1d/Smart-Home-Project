@@ -20,7 +20,6 @@ public class MotionSensor extends SmartDevice implements Alertable {
     private static final DateTimeFormatter FMT =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     // ───Attributes────────────────────────────────────────────
-    private final BooleanProperty motionDetected = new SimpleBooleanProperty(false);
     private final BooleanProperty sensorArmed = new SimpleBooleanProperty(true);
     private final IntegerProperty detectionCount = new SimpleIntegerProperty(0);
     private final List<String> alertHistory = new ArrayList<>();
@@ -38,13 +37,6 @@ public class MotionSensor extends SmartDevice implements Alertable {
         this.sensorArmed.set(armed);
         this.sensitivity = sensitivity;
 
-        // Listener fires alert & callback when motion flips to true
-        this.motionDetected.addListener((obs, oldV, newV) -> {
-            if (newV && isSensorArmed()) {
-                onMotionEvent();
-            }
-        });
-
         updateStatus("Device Initialized");
     }
 
@@ -53,7 +45,6 @@ public class MotionSensor extends SmartDevice implements Alertable {
     public void readState() {
         updateStatus(String.format(
                 "Motion=%s Armed=%s Sensitivity=%s TotalDetections=%d",
-                isMotionDetected() ? "YES" : "NO",
                 isSensorArmed() ? "ARMED" : "DISARMED",
                 sensitivity.name(),
                 detectionCount.get()));
@@ -70,15 +61,12 @@ public class MotionSensor extends SmartDevice implements Alertable {
             }
             case "disarm" -> {
                 setSensorArmed(false);
-                setMotionDetected(false);
                 updateStatus("Sensor DISARMED");
             }
             case "motion detected" -> {
-                setMotionDetected(true);
                 updateStatus("Motion DETECTED");
             }
             case "motion clear" -> {
-                setMotionDetected(false);
                 updateStatus("Motion CLEARED");
             }
             case "sensitivity low" -> {
@@ -104,8 +92,7 @@ public class MotionSensor extends SmartDevice implements Alertable {
     // ──────Visual icons for status──────────────────────
     @Override
     public String getStatusIcon() {
-        return (motionDetected.get() ? " 🚨 " : " ✅ ") +
-                (sensorArmed.get() ? " 🔒 " : " 🔓 ") +
+        return (sensorArmed.get() ? " 🔒 " : " 🔓 ") +
                 sensitivityIcon();
     }
 
@@ -158,9 +145,7 @@ public class MotionSensor extends SmartDevice implements Alertable {
     }
 
     // ─────JavaFX property & binding───────────────────────
-    public BooleanProperty motionDetectedProperty() {
-        return motionDetected;
-    }
+
 
     public BooleanProperty sensorArmedProperty() {
         return sensorArmed;
@@ -171,13 +156,6 @@ public class MotionSensor extends SmartDevice implements Alertable {
     }
 
     // ───────Setter & Getters───────────────────────────────
-    public boolean isMotionDetected() {
-        return motionDetected.get();
-    }
-
-    public void setMotionDetected(boolean v) {
-        motionDetected.set(v);
-    }
 
     public boolean isSensorArmed() {
         return sensorArmed.get();
