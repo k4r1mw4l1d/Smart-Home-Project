@@ -1,5 +1,90 @@
-public interface MQTT {
-    public void publish(String topic, String payload);
-    public void publishState();
-    public String buildPayload();
+import org.eclipse.paho.client.mqttv3.*;
+import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+import javafx.application.Platform;
+
+public class MQTT {
+    private String broker = "ssl://f74c544c3a2841d99d97115e3b8db081.s1.eu.hivemq.cloud:8883";
+    private String clientId = "JavaFX_SmartHome_" + System.currentTimeMillis();
+    private String username = "Ayman_Mo";
+    private String password = "Stream54321";
+
+    private MqttClient client;
+
+    // تعريف الموديلات لكل الغرف
+    private LivingRoom livingRoom;
+    private MasterRoom masterRoom;
+    private KidsRoom childrenRoom; // تأكد من اسم الكلاس عندك
+    private Kitchen kitchen;
+    private Bathroom bathroom;
+
+    // Setters عشان نربط الـ MQTT بالموديلات من الـ Main class
+    public void setModels(LivingRoom lr, MasterRoom mr, Kitchen k, Bathroom b) {
+        this.livingRoom = lr;
+        this.masterRoom = mr;
+        this.kitchen = k;
+        this.bathroom = b;
+    }
+
+    public void connect() {
+        try {
+            client = new MqttClient(broker, clientId, new MemoryPersistence());
+            MqttConnectOptions connOpts = new MqttConnectOptions();
+            connOpts.setSocketFactory(javax.net.ssl.SSLSocketFactory.getDefault());
+            connOpts.setUserName(username);
+            connOpts.setPassword(password.toCharArray());
+            connOpts.setCleanSession(true);
+
+            client.setCallback(new MqttCallback() {
+                @Override
+                public void connectionLost(Throwable cause) {
+                    System.out.println("Connection lost: " + cause.getMessage());
+                }
+
+                @Override
+                public void messageArrived(String topic, MqttMessage message) throws Exception {
+                    String payload = new String(message.getPayload());
+
+                    Platform.runLater(() -> {
+                        // 1. تحديث الحرارة الموحدة لكل البيت (من الـ DHT)
+                        if (topic.equals("home/all/temp")) {
+                            double temp = Double.parseDouble(payload);
+                            if(livingRoom != null) livingRoom.setTemperature(temp);
+                            if(masterRoom != null) masterRoom.setTemperature(temp);
+                            if(kitchen != null) kitchen.setTemperature(temp);
+                        }
+
+                        // 2. تحديث الأنوار لكل غرفة بشكل منفصل
+                        else if (topic.contains("/light")) {
+                            boolean state = payload.equalsIgnoreCase("ON");
+                            if (topic.contains("livingroom")) livingRoom.setLightsOn(state);
+                            else if (topic.contains("masterroom")) masterRoom.setLightsOn(state);
+                            else if (topic.contains("kitchen")) kitchen.setLightsOn(state);
+                            else if (topic.contains("bathroom")) bathroom.setLightsOn(state);
+                        }
+                    });
+                }
+
+                @Override
+                public void deliveryComplete(IMqttDeliveryToken token) {}
+            });
+
+            client.connect(connOpts);
+            // الاشتراك في كل الـ Topics اللي بتبدأ بـ home
+            client.subscribe("home/#", 0);
+            System.out.println("MQTT Connected & Subscribed to all rooms!");
+
+        } catch (MqttException me) {
+            me.printStackTrace();
+        }
+    }
+
+    public void publish(String topic, String content) {
+        try {
+            if (client != null && client.isConnected()) {
+                client.publish(topic, content.getBytes(), 0, false);
+            }
+        } catch (MqttException me) {
+            me.printStackTrace();
+        }
+    }
 }
