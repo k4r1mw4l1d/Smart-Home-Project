@@ -3,10 +3,10 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import javafx.application.Platform;
 
 public class MQTT {
-    private String broker = "ssl://f74c544c3a2841d99d97115e3b8db081.s1.eu.hivemq.cloud:8883";
+    private String broker = "ssl://95beb7d5a2a34aa4a71acf23b150818d.s1.eu.hivemq.cloud:8883";
     private String clientId = "JavaFX_SmartHome_" + System.currentTimeMillis();
-    private String username = "Ayman_Mo";
-    private String password = "Stream54321";
+    private String username = "k4r1m";
+    private String password = "Karim2006";
 
     private MqttClient client;
 
@@ -48,9 +48,9 @@ public class MQTT {
                         // 1. تحديث الحرارة الموحدة لكل البيت (من الـ DHT)
                         if (topic.equals("home/all/temp")) {
                             double temp = Double.parseDouble(payload);
-                            if(livingRoom != null) livingRoom.setTemperature(temp);
-                            if(masterRoom != null) masterRoom.setTemperature(temp);
-                            if(kitchen != null) kitchen.setTemperature(temp);
+                            if (livingRoom != null) livingRoom.setTemperature(temp);
+                            if (masterRoom != null) masterRoom.setTemperature(temp);
+                            if (kitchen != null) kitchen.setTemperature(temp);
                         }
 
                         // 2. تحديث الأنوار لكل غرفة بشكل منفصل
@@ -65,7 +65,8 @@ public class MQTT {
                 }
 
                 @Override
-                public void deliveryComplete(IMqttDeliveryToken token) {}
+                public void deliveryComplete(IMqttDeliveryToken token) {
+                }
             });
 
             client.connect(connOpts);
