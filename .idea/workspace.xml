@@ -6,58 +6,107 @@
   <component name="ChangeListManager">
     <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="نجرب">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Project/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/.idea/libraries/org_eclipse_paho_client_mqttv3_1_2_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/.idea/libraries/org_eclipse_paho_client_mqttv3_1_2_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/AlarmTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/AlarmTime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Alertable.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Alertable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Bathroom.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Bathroom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/CardConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/CardConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/CardImages.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/CardImages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Door_security.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Door_security.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/ExternalTempSensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/ExternalTempSensor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/GardenWaterSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/GardenWaterSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/JavaFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/JavaFX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/KidsRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/KidsRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Kitchen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Kitchen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/LivingRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/LivingRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/MQTT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/MQTT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/MasterRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/MasterRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/MotionSensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/MotionSensor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/SmartDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/SmartDevice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/SmartHomePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/SmartHomePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/mainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/mainApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/out/production/Project/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Project/out/production/Project/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/out/production/Project/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/out/production/Project/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/out/production/Project/.idea/libraries/org_eclipse_paho_client_mqttv3_1_2_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/out/production/Project/.idea/libraries/org_eclipse_paho_client_mqttv3_1_2_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/out/production/Project/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/out/production/Project/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/out/production/Project/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/out/production/Project/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/out/production/Project/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/out/production/Project/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/out/production/Project/Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/out/production/Project/Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/alarmSound/iphone_alarm.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/AC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/TV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/addAlarm.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/alarmYellow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/avatar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/awake.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/bathroom.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/cam.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/camera.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/curtains.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/darkMode.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/detect.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/dishWasher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/door.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/emergency.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/face.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/fire.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/fridge.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/heater.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/home.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/humidity.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/kidsRoom.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/kitchen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/lightIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/lightMode.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/living.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/lockOpen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/masterRoom.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/motion.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/movie.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/night.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/nightVision.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/noNotification.png.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/notification.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/occupied.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/outdoors.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/quickActions.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/rains.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/relax.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/relaxMode.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/romance.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/room.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/safeLock.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/settings.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/sleep.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/sleepMode.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/smartHome.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/storage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/stove.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/temp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/water.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/weather.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/icons/wifi.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/Safe.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/TVOff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/TVOn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/acOff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/acOn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/asleep.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/awake.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/bathFree.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/bathOccupied.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/cam.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/curtainsClose.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/curtainsOpen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/dishWasherOff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/dishWasherOn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/doorClosed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/doorOpen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/emerg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/faceOff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/faceOn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/fireOff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/fireOn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/fridgeOff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/fridgeOn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/full.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/good.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/heaterOff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/heaterOn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/humidity.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/lightsOff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/lightson.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/motion.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/noEmerg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/noMotion.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/onCam.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/rainsOff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/rainsOn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/stoveOff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/stoveOn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/tempSlider.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/unSafe.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/visionOff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/visionOn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/waterOff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/resources/images/waterOn.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Smart-Home-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Smart-Home-Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/AlarmTime.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/AlarmTime.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/Bathroom.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/Bathroom.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/Camera.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/Camera.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/Door_security.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/Door_security.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/ExternalTempSensor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/ExternalTempSensor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/GardenWaterSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/GardenWaterSystem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/KidsRoom.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/KidsRoom.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/LivingRoom.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/LivingRoom.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/MQTT.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/MQTT.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/MasterRoom.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/MasterRoom.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/MotionSensor$Sensitivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/MotionSensor$Sensitivity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/MotionSensor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/MotionSensor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/Project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/SmartHomePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/SmartHomePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/comments" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/mainApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/mainApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sketch_may14a/sketch_may14a.ino" beforeDir="false" afterPath="$PROJECT_DIR$/sketch_may14a/sketch_may14a.ino" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,12 +142,12 @@
     &quot;author&quot;: &quot;3mr-khaled0&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/3mr-khaled0/Smart-Home-Project.git&quot;,
-    &quot;accountId&quot;: &quot;2371cb57-a9f1-42d4-89a9-ebce0903dbb7&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/k4r1mw4l1d/Smart-Home-Project.git",
+    "accountId": "2371cb57-a9f1-42d4-89a9-ebce0903dbb7"
   }
-}</component>
+}]]></component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -125,8 +174,10 @@
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
+    "ignore.preview.features.used": "true",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/User/Desktop/Smart-Home-Project",
@@ -139,10 +190,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Smart-Home-Project" />
       <recent name="D:\SmartHome\Project\resources\alarmSound" />
       <recent name="D:\SmartHome\Project\resources" />
       <recent name="D:\SmartHome\Project" />
     </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.32098.37" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

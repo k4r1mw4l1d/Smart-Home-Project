@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class AlarmTime implements Runnable {
 
-    private static final String SOUND_PATH = "/resources/alarmSound/iphone_alarm.wav";
+    private static final String SOUND_PATH = "alarmSound/iphone_alarm.wav";
     private static Clip clip;
     private final LocalTime alarmTime;
     private final Scanner scan;

@@ -27,8 +27,8 @@ import java.util.Random;
 
 public class SmartHomePanel extends Application {
 
-    private static final String ICONS = "file:C:/Users/User/Desktop/Smart-Home-Project/Project/resources/icons/";
-    private static final String IMAGES = "file:C:/Users/User/Desktop/Smart-Home-Project/Project/resources/images/";
+    private static final String ICONS = "icons/";
+    private static final String IMAGES = "images/";
     MQTT mqttService = new MQTT();
     private ArrayList<VBox> allCards = new ArrayList<>();
     private ArrayList<Label> allCardsLabels = new ArrayList<>();
@@ -174,8 +174,12 @@ public class SmartHomePanel extends Application {
 
         Scene scene = new Scene(root, 1100, 700);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Smart Home");
+        primaryStage.setTitle("Smart Home Panel");
         primaryStage.setMaximized(true);
+        primaryStage.setFullScreen(true);
+        primaryStage.setFullScreenExitHint("");
+        Image icon = new Image(IMAGES + "ProgIcon.png");
+        primaryStage.getIcons().add(icon);
         primaryStage.show();
     }
 
@@ -382,9 +386,18 @@ public class SmartHomePanel extends Application {
             setScreen(buildAlarm());
             setActive(alarm, "#133466");
 
+            if (darkMode) {
+                enableDarkMode();
+                darkMode = true;
+            } else {
+                enableLightMode();
+                darkMode = false;
+            }
+
         });
 
         side.getChildren().addAll(alarm);
+
 
         // ─────Empty region to fill space─────────────
         Region spacer = new Region();
@@ -1125,23 +1138,6 @@ public class SmartHomePanel extends Application {
         int initial = (int) livingRoom.getTemperature();
         valueLabel.setText(initial + " °C");
 
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(15), e -> {
-
-                    int current = (int) livingRoom.getTemperature();
-                    int change = random.nextInt(-3, 4);
-                    current += change;
-
-                    if (current < 5) current = 5;
-                    if (current > 40) current = 40;
-
-                    livingRoom.setTemperature(current);
-                    valueLabel.setText(current + " °C");
-                })
-        );
-
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
 
         VBox content = new VBox(10, valueLabel);
         content.setAlignment(Pos.CENTER);
@@ -1463,24 +1459,6 @@ public class SmartHomePanel extends Application {
 
         int initial = (int) masterRoom.getTemperature();
         valueLabel.setText(initial + " °C");
-
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(15), e -> {
-
-                    int current = (int) masterRoom.getTemperature();
-                    int change = random.nextInt(-3, 4);
-                    current += change;
-
-                    if (current < 5) current = 5;
-                    if (current > 40) current = 40;
-
-                    masterRoom.setTemperature(current);
-                    valueLabel.setText(current + " °C");
-                })
-        );
-
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
 
         VBox content = new VBox(10, valueLabel);
         content.setAlignment(Pos.CENTER);
@@ -1830,24 +1808,6 @@ public class SmartHomePanel extends Application {
 
         int initial = (int) kidsRoom.getTemperature();
         valueLabel.setText(initial + " °C");
-
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(30), e -> {
-
-                    int current = (int) kidsRoom.getTemperature();
-                    int change = random.nextInt(-3, 4);
-                    current += change;
-
-                    if (current < 5) current = 5;
-                    if (current > 40) current = 40;
-
-                    kidsRoom.setTemperature(current);
-                    valueLabel.setText(current + " °C");
-                })
-        );
-
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
 
         VBox content = new VBox(10, valueLabel);
         content.setAlignment(Pos.CENTER);
@@ -2289,24 +2249,6 @@ public class SmartHomePanel extends Application {
         int initial = (int) kitchen.getTemperature();
         valueLabel.setText(initial + " °C");
 
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(15), e -> {
-
-                    int current = (int) kitchen.getTemperature();
-                    int change = random.nextInt(-3, 4);
-                    current += change;
-
-                    if (current < 5) current = 5;
-                    if (current > 80) current = 80;
-
-                    kitchen.setTemperature(current);
-                    valueLabel.setText(current + " °C");
-                })
-        );
-
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-
         VBox content = new VBox(10, valueLabel);
         content.setAlignment(Pos.CENTER);
 
@@ -2727,32 +2669,6 @@ public class SmartHomePanel extends Application {
 
         final int[] humidity = {50};
         humidityLabel.setText(humidity[0] + " %");
-
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(15), e -> {
-
-                    int change = random.nextInt(-10, 11);
-                    humidity[0] += change;
-
-                    if (humidity[0] < 10) humidity[0] = 10;
-                    if (humidity[0] > 90) humidity[0] = 90;
-
-                    humidityLabel.setText(humidity[0] + " %");
-
-                    if (humidity[0] < 30) {
-                        waterSystem.setWateringOn(true);
-                        humidityLabel.setStyle("-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #e67e22;");
-                    } else if (humidity[0] > 70) {
-                        waterSystem.setWateringOn(false);
-                        humidityLabel.setStyle("-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #3498db;");
-                    } else {
-                        humidityLabel.setStyle("-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2ecc71;");
-                    }
-                })
-        );
-
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
 
         VBox content = new VBox(10, humidityLabel);
         content.setAlignment(Pos.CENTER);
@@ -3316,6 +3232,8 @@ public class SmartHomePanel extends Application {
         });
 
         card.getChildren().addAll(title, timeRow, status, msg, enableBtn, stopBtn);
+
+        allCards.add(card);
 
         return card;
     }
