@@ -552,6 +552,56 @@ public class SmartHomePanel extends Application {
                 roomsCards
         );
 
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(1), e -> {
+
+                    // Living Room
+                    ((Label) living.lookup("#lightsLabel"))
+                            .setText("Lights: " + (livingRoom.isLightsOn() ? "ON" : "OFF"));
+
+                    ((Label) living.lookup("#acLabel"))
+                            .setText("AC: " + (livingRoom.isAcOn() ? "ON" : "OFF"));
+
+                    ((Label) living.lookup("#tempLabel"))
+                            .setText("Temp: " + livingRoom.getTemperature() + "°C");
+
+                    ((Label) living.lookup("#doorLabel"))
+                            .setText("Door: " + (doorSecurity.isDoorOpen() ? "Opened" : "Closed"));
+
+
+                    // Master Room
+                    ((Label) master.lookup("#lightsLabel"))
+                            .setText("Lights: " + (masterRoom.isLightsOn() ? "ON" : "OFF"));
+
+                    ((Label) master.lookup("#acLabel"))
+                            .setText("AC: " + (masterRoom.isAcOn() ? "ON" : "OFF"));
+
+                    ((Label) master.lookup("#tempLabel"))
+                            .setText("Temp: " + masterRoom.getTemperature() + "°C");
+
+                    ((Label) master.lookup("#doorLabel"))
+                            .setText("Door: " + (masterRoom.isDoorOpen() ? "Opened" : "Closed"));
+
+
+                    // Kids Room
+                    ((Label) kids.lookup("#lightsLabel"))
+                            .setText("Lights: " + (kidsRoom.isLightsOn() ? "ON" : "OFF"));
+
+                    ((Label) kids.lookup("#acLabel"))
+                            .setText("AC: " + (kidsRoom.isAcOn() ? "ON" : "OFF"));
+
+                    ((Label) kids.lookup("#tempLabel"))
+                            .setText("Temp: " + kidsRoom.getTemperature() + "°C");
+
+                    ((Label) kids.lookup("#doorLabel"))
+                            .setText("Door: " + (masterRoom.isDoorOpen() ? "Opened" : "Closed"));
+
+                })
+        );
+
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+
         allRoomsLabels.add(welcome);
         allCardsLabels.add(sub);
         return main;
@@ -798,6 +848,11 @@ public class SmartHomePanel extends Application {
         status.getChildren().addAll(lights, AC, temp, door);
 
         card.getChildren().addAll(header, status);
+
+        lights.setId("lightsLabel");
+        AC.setId("acLabel");
+        temp.setId("tempLabel");
+        door.setId("doorLabel");
 
         allCards.add(card);
         allRoomsStatus.add(lights);
@@ -1594,7 +1649,6 @@ public class SmartHomePanel extends Application {
     // ──── Temp card ───────────────────────
     public VBox masterTempSliderCard() {
 
-        Random random = new Random();
         CardImages result = makeCard("temp", "Temperature Sensor", "tempSlider", 200);
 
         VBox card = result.card;

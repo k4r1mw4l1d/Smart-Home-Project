@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="Main after opening">
+    <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="closed auto">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/JavaFX.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/MQTT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/MQTT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/SmartHomePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/SmartHomePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/mainApp.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/SmartHomePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/SmartHomePanel.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -184,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778990788070</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="closed auto">
+      <option name="closed" value="true" />
+      <created>1779051050285</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1779051050285</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -207,18 +218,8 @@
     <MESSAGE value="نجرب" />
     <MESSAGE value="mover resources out of src&#10;changed timeline in temp sensors" />
     <MESSAGE value="Main after opening" />
-    <option name="LAST_COMMIT_MESSAGE" value="Main after opening" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Project/MQTT.java</url>
-          <line>90</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="closed auto" />
+    <option name="LAST_COMMIT_MESSAGE" value="closed auto" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

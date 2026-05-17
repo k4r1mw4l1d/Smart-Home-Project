@@ -10,14 +10,12 @@ public class MQTT {
 
     private MqttClient client;
 
-    // تعريف الموديلات لكل الغرف
     private LivingRoom livingRoom;
     private MasterRoom masterRoom;
-    private KidsRoom childrenRoom; // تأكد من اسم الكلاس عندك
+    private KidsRoom childrenRoom;
     private Kitchen kitchen;
     private Bathroom bathroom;
 
-    // Setters عشان نربط الـ MQTT بالموديلات من الـ Main class
     public void setModels(LivingRoom lr, MasterRoom mr, Kitchen k, Bathroom b) {
         this.livingRoom = lr;
         this.masterRoom = mr;
@@ -45,16 +43,12 @@ public class MQTT {
                     String payload = new String(message.getPayload());
 
                     Platform.runLater(() -> {
-                        // 1. تحديث الحرارة الموحدة لكل البيت (من الـ DHT)
                         if (topic.equals("home/all/temp")) {
                             double temp = Double.parseDouble(payload);
                             if (livingRoom != null) livingRoom.setTemperature(temp);
                             if (masterRoom != null) masterRoom.setTemperature(temp);
                             if (kitchen != null) kitchen.setTemperature(temp);
-                        }
-
-                        // 2. تحديث الأنوار لكل غرفة بشكل منفصل
-                        else if (topic.contains("/light")) {
+                        } else if (topic.contains("/light")) {
                             boolean state = payload.equalsIgnoreCase("ON");
                             if (topic.contains("livingroom")) livingRoom.setLightsOn(state);
                             else if (topic.contains("masterroom")) masterRoom.setLightsOn(state);
@@ -70,7 +64,6 @@ public class MQTT {
             });
 
             client.connect(connOpts);
-            // الاشتراك في كل الـ Topics اللي بتبدأ بـ home
             client.subscribe("home/#", 0);
             System.out.println("MQTT Connected & Subscribed to all rooms!");
 
