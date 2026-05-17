@@ -475,7 +475,7 @@ public class SmartHomePanel extends Application {
 
         ScrollPane scrollPane = new ScrollPane(onScreen);
         scrollPane.setFitToWidth(true);
-        scrollPane.setStyle("-fx-background-color: transparent; -fx-background: transparent;");
+        scrollPane.setStyle("-fx-background-color: transparent;");
 
         VBox.setVgrow(scrollPane, Priority.ALWAYS);
         dashboard.getChildren().add(scrollPane);
@@ -543,8 +543,8 @@ public class SmartHomePanel extends Application {
 
         roomsCards.getChildren().addAll(
                 living,
-                kids,
-                master
+                master,
+                kids
         );
 
         main.getChildren().addAll(
@@ -1707,27 +1707,6 @@ public class SmartHomePanel extends Application {
             masterRoom.setDoorOpen(false);
         });
 
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(30), e -> {
-
-                    boolean unsafe = random.nextBoolean();
-
-                    if (unsafe) {
-                        kidsRoom.setBabySafety(true);
-                        masterRoom.setLightsOn(true);
-                        masterRoom.setDoorOpen(true);
-                    } else {
-                        kidsRoom.setBabySafety(false);
-                        kidsRoom.setAwake(false);
-                        kidsRoom.setLightsOn(false);
-                        masterRoom.setLightsOn(false);
-                        masterRoom.setDoorOpen(false);
-                    }
-                })
-        );
-
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
 
         VBox controls = new VBox(10, status, resetBtn);
         controls.setAlignment(Pos.CENTER);
@@ -1992,16 +1971,6 @@ public class SmartHomePanel extends Application {
                 kidsRoom.setAcOn(false);
             }
         });
-
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(28), e -> {
-                    boolean state = random.nextBoolean();
-                    kidsRoom.setAwake(state);
-                })
-        );
-
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
 
         VBox controls = new VBox(10);
         controls.setAlignment(Pos.CENTER);
@@ -2617,18 +2586,6 @@ public class SmartHomePanel extends Application {
             img.setImage(newVal ? occupiedImg : freeImg);
             styleStatusF(status, !newVal);
         });
-
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(15), e -> {
-                    boolean state = random.nextBoolean();
-                    bathroom.setOccupied(state);
-                    bathroom.setDoorOpen(!state);
-                    bathroom.setLightsOn(state);
-                })
-        );
-
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
 
         VBox content = new VBox(10, status);
         content.setAlignment(Pos.CENTER);

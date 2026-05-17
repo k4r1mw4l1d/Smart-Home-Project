@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="mover resources out of src&#10;changed timeline in temp sensors">
+    <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="Main after opening">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/SmartHomePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/SmartHomePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/SmartHomePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/SmartHomePanel.class" afterDir="false" />
@@ -176,7 +176,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778964206099</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Main after opening">
+      <option name="closed" value="true" />
+      <created>1778990788070</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1778990788070</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -198,7 +206,8 @@
     <MESSAGE value="resources" />
     <MESSAGE value="نجرب" />
     <MESSAGE value="mover resources out of src&#10;changed timeline in temp sensors" />
-    <option name="LAST_COMMIT_MESSAGE" value="mover resources out of src&#10;changed timeline in temp sensors" />
+    <MESSAGE value="Main after opening" />
+    <option name="LAST_COMMIT_MESSAGE" value="Main after opening" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
