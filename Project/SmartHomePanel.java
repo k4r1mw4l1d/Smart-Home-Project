@@ -33,6 +33,7 @@ public class SmartHomePanel extends Application {
     private ArrayList<VBox> allCards = new ArrayList<>();
     private ArrayList<Label> allCardsLabels = new ArrayList<>();
     private ArrayList<Label> allRoomsLabels = new ArrayList<>();
+    private ArrayList<Label> allRoomsStatus = new ArrayList<>();
     private boolean darkMode = false;
     private Label dateLabel;
     private VBox side;
@@ -123,7 +124,7 @@ public class SmartHomePanel extends Application {
                 false,
                 5,
                 false,
-                25
+                24
         );
 
         doorSecurity = new Door_security(
@@ -165,11 +166,11 @@ public class SmartHomePanel extends Application {
                 false
         );
 
-        // ───── 3. Connect Program to cloud ─────
+        // ───── 3. Connect Program to cloud ──────────────
         mqttService.setModels(livingRoom, masterRoom, kitchen, bathroom);
         mqttService.connect();
 
-        // ───── 4. UI Setup ───────────────────────────────────
+        // ───── Main program ───────────────────────────────────
         showWelcomeScreen();
 
         Scene scene = new Scene(root, 1100, 700);
@@ -188,6 +189,8 @@ public class SmartHomePanel extends Application {
 
         root.setLeft(buildSidebar());
         root.setCenter(buildDashboard());
+        setScreen(buildMainScreen());
+        enableLightMode();
     }
 
     //─────First page ─────────────────────────────
@@ -331,6 +334,24 @@ public class SmartHomePanel extends Application {
             side.getChildren().add(empty);
         }
 
+        // ─────Sidebar -> main─────────────
+        HBox main = navRows("home", 24, "Main", "#c2c2c2", 16);
+        mouseHover(main, "#1d3e6e", "#0a1e3d");
+
+        main.setOnMouseClicked(e -> {
+
+            setScreen(buildMainScreen());
+            setActive(main, "#1d3e6e");
+
+            if (darkMode) {
+                enableDarkMode();
+            } else {
+                enableLightMode();
+            }
+        });
+
+        side.getChildren().addAll(main);
+
         // ─────Sidebar -> rooms list─────────────
         HBox rooms = navRows("room", 24, "Rooms", "#c2c2c2", 16);
         mouseHover(rooms, "#1d3e6e", "#0a1e3d");
@@ -381,6 +402,7 @@ public class SmartHomePanel extends Application {
         // ─────Sidebar -> Alarm─────────────
         HBox alarm = navRows("addAlarm", 24, "Alarms", "#c2c2c2", 16);
         mouseHover(alarm, "#133466", "#0a1e3d");
+
         alarm.setOnMouseClicked(e -> {
 
             setScreen(buildAlarm());
@@ -459,6 +481,80 @@ public class SmartHomePanel extends Application {
         dashboard.getChildren().add(scrollPane);
 
         return dashboard;
+    }
+
+    // ─────Main─────────────────────
+    public VBox buildMainScreen() {
+
+        VBox main = new VBox(25);
+        main.setPadding(new Insets(25));
+
+        VBox welcomeBox = new VBox(5);
+
+        Label welcome = new Label("Welcome Back, " + name + "!");
+        welcome.setStyle(
+                "-fx-font-size: 32px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-text-fill: #0a1e3d;"
+        );
+
+        Label sub = new Label("Everything in one place");
+        sub.setStyle(
+                "-fx-font-size: 16px;" +
+                        "-fx-text-fill: #6b7280;"
+        );
+
+        welcomeBox.getChildren().addAll(welcome, sub);
+
+        // ───── Rooms ─────────────────────
+        HBox roomsCards = new HBox(20);
+
+        VBox living = roomStatusCard(
+                "oLiving",
+                "Living Room",
+                livingRoom.isLightsOn() ? "ON" : "OFF",
+                livingRoom.isAcOn() ? "ON" : "OFF",
+                livingRoom.getTemperature(),
+                doorSecurity.isDoorOpen() ? "Opened" : "Closed"
+        );
+
+        VBox master = roomStatusCard(
+                "rBed",
+                "Master Room",
+                masterRoom.isLightsOn() ? "ON" : "OFF",
+                masterRoom.isAcOn() ? "ON" : "OFF",
+                masterRoom.getTemperature(),
+                masterRoom.isDoorOpen() ? "Opened" : "Closed"
+        );
+
+        VBox kids = roomStatusCard(
+                "yKids",
+                "Kids Room",
+                kidsRoom.isLightsOn() ? "ON" : "OFF",
+                kidsRoom.isAcOn() ? "ON" : "OFF",
+                kidsRoom.getTemperature(),
+                masterRoom.isDoorOpen() ? "Opened" : "Closed"
+        );
+
+
+        HBox.setHgrow(living, Priority.ALWAYS);
+        HBox.setHgrow(kids, Priority.ALWAYS);
+        HBox.setHgrow(master, Priority.ALWAYS);
+
+        roomsCards.getChildren().addAll(
+                living,
+                kids,
+                master
+        );
+
+        main.getChildren().addAll(
+                welcomeBox,
+                roomsCards
+        );
+
+        allRoomsLabels.add(welcome);
+        allCardsLabels.add(sub);
+        return main;
     }
 
     // ─────Rooms menu─────────────────────
@@ -673,6 +769,44 @@ public class SmartHomePanel extends Application {
         return items;
     }
 
+    // ───── rooms status (main) ─────────────────────
+    public VBox roomStatusCard(
+            String icon,
+            String title,
+            String lightStatus,
+            String acStatus,
+            double tempVal,
+            String doorStatus
+    ) {
+
+        VBox card = new VBox(12);
+        card.setPadding(new Insets(18));
+        cardHover(card);
+        card.setStyle(cardStyle());
+
+        // ───── Header ─────────────────────
+        HBox header = cardHead(icon, 24, title);
+
+        // ───── Status Section ─────────────────────
+        VBox status = new VBox(8);
+
+        Label lights = new Label("💡 Lights: " + lightStatus);
+        Label AC = new Label("❄ AC: " + acStatus);
+        Label temp = new Label("🌡 Temp: " + tempVal);
+        Label door = new Label("🚪 Door: " + doorStatus);
+
+        status.getChildren().addAll(lights, AC, temp, door);
+
+        card.getChildren().addAll(header, status);
+
+        allCards.add(card);
+        allRoomsStatus.add(lights);
+        allRoomsStatus.add(AC);
+        allRoomsStatus.add(temp);
+        allRoomsStatus.add(door);
+        return card;
+    }
+
     // ─────Mouse hover on box─────────────────────
     public void mouseHover(HBox item, String onColor, String offColor) {
 
@@ -718,7 +852,15 @@ public class SmartHomePanel extends Application {
         for (Label roomLabel : allRoomsLabels) {
             roomLabel.setStyle(
                     "-fx-font-weight: bold;" +
-                            "-fx-font-size: 30;"
+                            "-fx-font-size: 30;" +
+                            "-fx-text-fill: #000000;"
+            );
+        }
+
+        for (Label status : allRoomsStatus) {
+            status.setStyle(
+                    "-fx-font-size: 15;" +
+                            "-fx-text-fill: #000000;"
             );
         }
     }
@@ -743,6 +885,13 @@ public class SmartHomePanel extends Application {
 
         for (Label roomLabel : allRoomsLabels) {
             roomLabel.setStyle("-fx-font-size: 30px;-fx-text-fill: #ffffff;-fx-font-weight: bold;");
+        }
+
+        for (Label status : allRoomsStatus) {
+            status.setStyle(
+                    "-fx-font-size: 15;" +
+                            "-fx-text-fill: #ffffff;"
+            );
         }
     }
 

@@ -4,108 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="نجرب">
+    <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="mover resources out of src&#10;changed timeline in temp sensors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/SmartHomePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/SmartHomePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/alarmSound/iphone_alarm.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/AC.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/TV.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/addAlarm.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/alarmYellow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/avatar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/awake.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/bathroom.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/cam.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/camera.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/curtains.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/darkMode.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/detect.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/dishWasher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/door.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/emergency.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/face.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/fire.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/fridge.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/heater.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/home.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/humidity.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/kidsRoom.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/kitchen.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/lightIcon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/lightMode.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/living.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/lockOpen.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/masterRoom.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/motion.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/movie.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/night.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/nightVision.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/noNotification.png.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/notification.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/occupied.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/outdoors.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/quickActions.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/rains.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/relax.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/relaxMode.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/romance.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/room.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/safeLock.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/settings.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/sleep.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/sleepMode.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/smartHome.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/storage.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/stove.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/temp.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/water.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/weather.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/icons/wifi.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/Safe.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/TVOff.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/TVOn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/acOff.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/acOn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/asleep.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/awake.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/bathFree.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/bathOccupied.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/cam.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/curtainsClose.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/curtainsOpen.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/dishWasherOff.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/dishWasherOn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/doorClosed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/doorOpen.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/emerg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/faceOff.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/faceOn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/fireOff.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/fireOn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/fridgeOff.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/fridgeOn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/full.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/good.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/heaterOff.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/heaterOn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/humidity.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/lightsOff.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/lightson.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/motion.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/noEmerg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/noMotion.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/onCam.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/rainsOff.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/rainsOn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/stoveOff.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/stoveOn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/tempSlider.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/unSafe.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/visionOff.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/visionOn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/waterOff.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/resources/images/waterOn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smart-Home-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Smart-Home-Project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/SmartHomePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/SmartHomePanel.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -142,12 +43,12 @@
     &quot;author&quot;: &quot;3mr-khaled0&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/k4r1mw4l1d/Smart-Home-Project.git",
-    "accountId": "2371cb57-a9f1-42d4-89a9-ebce0903dbb7"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/k4r1mw4l1d/Smart-Home-Project.git&quot;,
+    &quot;accountId&quot;: &quot;2371cb57-a9f1-42d4-89a9-ebce0903dbb7&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -163,31 +64,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.JavaFX.executor": "Run",
-    "Application.SmartHomePanel.executor": "Run",
-    "Application.mainApp.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.preview.features.used": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/User/Desktop/Smart-Home-Project",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Java"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.JavaFX.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SmartHomePanel.executor&quot;: &quot;Run&quot;,
+    &quot;Application.mainApp.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.preview.features.used&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Desktop/Smart-Home-Project&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Java&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Smart-Home-Project" />
@@ -267,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778556432441</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="mover resources out of src&#10;changed timeline in temp sensors">
+      <option name="closed" value="true" />
+      <created>1778964206099</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1778964206099</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -288,7 +197,8 @@
     <MESSAGE value="GUI project" />
     <MESSAGE value="resources" />
     <MESSAGE value="نجرب" />
-    <option name="LAST_COMMIT_MESSAGE" value="نجرب" />
+    <MESSAGE value="mover resources out of src&#10;changed timeline in temp sensors" />
+    <option name="LAST_COMMIT_MESSAGE" value="mover resources out of src&#10;changed timeline in temp sensors" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
