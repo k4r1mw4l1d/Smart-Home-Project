@@ -16,9 +16,10 @@ public class MQTT {
     private Kitchen kitchen;
     private Bathroom bathroom;
 
-    public void setModels(LivingRoom lr, MasterRoom mr, Kitchen k, Bathroom b) {
+    public void setModels(LivingRoom lr, MasterRoom mr, KidsRoom kr, Kitchen k, Bathroom b) {
         this.livingRoom = lr;
         this.masterRoom = mr;
+        this.childrenRoom = kr;
         this.kitchen = k;
         this.bathroom = b;
     }
@@ -52,8 +53,19 @@ public class MQTT {
                             boolean state = payload.equalsIgnoreCase("ON");
                             if (topic.contains("livingroom")) livingRoom.setLightsOn(state);
                             else if (topic.contains("masterroom")) masterRoom.setLightsOn(state);
+                            else if (topic.contains("kidsroom")) childrenRoom.setLightsOn(state); // ← add this
                             else if (topic.contains("kitchen")) kitchen.setLightsOn(state);
                             else if (topic.contains("bathroom")) bathroom.setLightsOn(state);
+                        } else if (topic.equals("home/kidsroom/ac")) {          // ← add this block
+                            boolean state = payload.equalsIgnoreCase("ON");
+                            childrenRoom.setAcOn(state);
+                        } else if (topic.equals("home/all/temp")) {
+                            double temp = Double.parseDouble(payload);
+                            if (livingRoom != null) livingRoom.setTemperature(temp);
+                            if (masterRoom != null) masterRoom.setTemperature(temp);
+                            if (childrenRoom != null) childrenRoom.setTemperature(temp); // ← add this
+                            if (kitchen != null) kitchen.setTemperature(temp);
+                            if (childrenRoom != null) childrenRoom.setTemperature(temp);
                         }
                     });
                 }

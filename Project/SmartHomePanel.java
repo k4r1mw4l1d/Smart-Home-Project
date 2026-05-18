@@ -169,7 +169,7 @@ public class SmartHomePanel extends Application {
 
 
         // ───── 3. Connect Program to cloud ──────────────
-        mqttService.setModels(livingRoom, masterRoom, kitchen, bathroom);
+        mqttService.setModels(livingRoom, masterRoom, kidsRoom, kitchen, bathroom);
         mqttService.connect();
 
         // ───── Main program ───────────────────────────────────
@@ -311,7 +311,7 @@ public class SmartHomePanel extends Application {
             }
         });
 
-        mqttService.setModels(livingRoom, masterRoom, kitchen, bathroom);
+        mqttService.setModels(livingRoom, masterRoom, kidsRoom, kitchen, bathroom);
         mqttService.connect();
     }
 
@@ -2057,9 +2057,11 @@ public class SmartHomePanel extends Application {
             }
         });
 
-        toggle.setOnAction(e ->
-                kidsRoom.setAcOn(!kidsRoom.isAcOn())
-        );
+        toggle.setOnAction(e -> {
+            boolean nextState = !kidsRoom.isAcOn();
+            kidsRoom.setAcOn(nextState);
+            mqttService.publish("home/kidsroom/ac", nextState ? "ON" : "OFF"); // ← missing
+        });
 
         HBox tempControls = new HBox(10, minus, tempLabel, plus);
         tempControls.setAlignment(Pos.CENTER);
