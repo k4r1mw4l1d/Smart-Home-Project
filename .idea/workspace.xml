@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="closed auto">
+    <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="Update main">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/JavaFX.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/MQTT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/MQTT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/SmartHomePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/SmartHomePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/mainApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/JavaFX.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/MQTT$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/MQTT$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/MQTT.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/MQTT.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/SmartHomePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/SmartHomePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/mainApp.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +196,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779051050285</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Update main">
+      <option name="closed" value="true" />
+      <created>1779052899118</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1779052899118</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -219,7 +228,8 @@
     <MESSAGE value="mover resources out of src&#10;changed timeline in temp sensors" />
     <MESSAGE value="Main after opening" />
     <MESSAGE value="closed auto" />
-    <option name="LAST_COMMIT_MESSAGE" value="closed auto" />
+    <MESSAGE value="Update main" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update main" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

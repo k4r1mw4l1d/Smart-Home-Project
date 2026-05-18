@@ -30,6 +30,7 @@ public class SmartHomePanel extends Application {
     private static final String ICONS = "icons/";
     private static final String IMAGES = "images/";
     MQTT mqttService = new MQTT();
+    Label welcome;
     private ArrayList<VBox> allCards = new ArrayList<>();
     private ArrayList<Label> allCardsLabels = new ArrayList<>();
     private ArrayList<Label> allRoomsLabels = new ArrayList<>();
@@ -166,6 +167,7 @@ public class SmartHomePanel extends Application {
                 false
         );
 
+
         // ───── 3. Connect Program to cloud ──────────────
         mqttService.setModels(livingRoom, masterRoom, kitchen, bathroom);
         mqttService.connect();
@@ -173,7 +175,16 @@ public class SmartHomePanel extends Application {
         // ───── Main program ───────────────────────────────────
         showWelcomeScreen();
 
-        Scene scene = new Scene(root, 1100, 700);
+        ScrollPane scroll = new ScrollPane(root);
+        scroll.setStyle("-fx-background: transparent;" +
+                "-fx-background-color: transparent;" +
+                "-fx-padding: 0;"
+        );
+
+        scroll.setFitToWidth(true);
+        scroll.setFitToHeight(true);
+
+        Scene scene = new Scene(scroll, 1500, 900);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Smart Home Panel");
         primaryStage.setMaximized(true);
@@ -405,7 +416,7 @@ public class SmartHomePanel extends Application {
 
         alarm.setOnMouseClicked(e -> {
 
-            setScreen(buildAlarm());
+            setScreen(buildAlarmCards());
             setActive(alarm, "#133466");
 
             if (darkMode) {
@@ -426,8 +437,51 @@ public class SmartHomePanel extends Application {
         VBox.setVgrow(spacer, Priority.ALWAYS);
         side.getChildren().add(spacer);
 
-        // ─────User icon───────────────────────
-        side.getChildren().add(navRows("avatar", 50, name, "#c2c2c2", 16));
+        HBox avatar = navRows("avatar", 50, "", "#c2c2c2", 16);
+        mouseHover(avatar, "#133466", "#0a1e3d");
+
+        Label nameLabel = new Label(name);
+        TextField nameField = new TextField(name);
+
+        nameLabel.setStyle("-fx-text-fill: #c2c2c2; -fx-font-size: 16px;");
+        nameField.setStyle("-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: #c2c2c2; -fx-font-size: 16px;");
+
+        nameField.setVisible(false);
+        nameField.setManaged(false);
+
+        avatar.getChildren().addAll(nameLabel, nameField);
+
+        avatar.setOnMouseClicked(e -> {
+
+            nameField.setText(nameLabel.getText());
+
+            nameLabel.setVisible(false);
+            nameLabel.setManaged(false);
+
+            nameField.setVisible(true);
+            nameField.setManaged(true);
+
+            nameField.requestFocus();
+            nameField.selectAll();
+        });
+
+        nameField.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
+
+                name = nameField.getText().trim();
+                welcome.setText("Welcome Back, " + name + "!");
+
+                nameLabel.setText(name);
+
+                nameLabel.setVisible(true);
+                nameLabel.setManaged(true);
+
+                nameField.setVisible(false);
+                nameField.setManaged(false);
+            }
+        });
+
+        side.getChildren().add(avatar);
 
         return side;
 
@@ -473,12 +527,7 @@ public class SmartHomePanel extends Application {
 
         onScreen = new VBox();
 
-        ScrollPane scrollPane = new ScrollPane(onScreen);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setStyle("-fx-background-color: transparent;");
-
-        VBox.setVgrow(scrollPane, Priority.ALWAYS);
-        dashboard.getChildren().add(scrollPane);
+        dashboard.getChildren().add(onScreen);
 
         return dashboard;
     }
@@ -491,7 +540,7 @@ public class SmartHomePanel extends Application {
 
         VBox welcomeBox = new VBox(5);
 
-        Label welcome = new Label("Welcome Back, " + name + "!");
+        welcome = new Label("Welcome Back, " + name + "!");
         welcome.setStyle(
                 "-fx-font-size: 32px;" +
                         "-fx-font-weight: bold;" +
@@ -547,54 +596,104 @@ public class SmartHomePanel extends Application {
                 kids
         );
 
+        HBox addons = new HBox(20);
+
+        VBox kkitchen = roomStatusCard(
+                "bKitchen",
+                "Kitchen",
+                kitchen.isLightsOn() ? "ON" : "OFF",
+                kitchen.isStoveOn() ? "ON" : "OFF",
+                kitchen.getTemperature(),
+                kitchen.isFridgeOn() ? "ON" : "OFF"
+        );
+
+        VBox bath = roomStatusCard(
+                "gBath",
+                "Bathroom",
+                bathroom.isLightsOn() ? "ON" : "OFF",
+                bathroom.isHeaterOn() ? "ON" : "OFF",
+                bathroom.getWaterTemperature(),
+                bathroom.isDoorOpen() ? "Opened" : "Closed"
+        );
+
+        HBox.setHgrow(kkitchen, Priority.ALWAYS);
+        HBox.setHgrow(bath, Priority.ALWAYS);
+
+        addons.getChildren().addAll(kkitchen, bath);
+
         main.getChildren().addAll(
                 welcomeBox,
-                roomsCards
+                roomsCards,
+                addons
         );
 
         Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(1), e -> {
+                new KeyFrame(Duration.seconds(0.0001), e -> {
 
-                    // Living Room
+                    // ───── Living room ─────────────────────
                     ((Label) living.lookup("#lightsLabel"))
-                            .setText("Lights: " + (livingRoom.isLightsOn() ? "ON" : "OFF"));
+                            .setText("💡 Lights: " + (livingRoom.isLightsOn() ? "ON" : "OFF"));
 
                     ((Label) living.lookup("#acLabel"))
-                            .setText("AC: " + (livingRoom.isAcOn() ? "ON" : "OFF"));
+                            .setText("❄ AC: " + (livingRoom.isAcOn() ? "ON" : "OFF"));
 
                     ((Label) living.lookup("#tempLabel"))
-                            .setText("Temp: " + livingRoom.getTemperature() + "°C");
+                            .setText("🌡 Temp: " + livingRoom.getTemperature() + "°C");
 
                     ((Label) living.lookup("#doorLabel"))
-                            .setText("Door: " + (doorSecurity.isDoorOpen() ? "Opened" : "Closed"));
+                            .setText("🚪 Door: " + (doorSecurity.isDoorOpen() ? "Opened" : "Closed"));
 
-
-                    // Master Room
+                    // ───── Master room ─────────────────────
                     ((Label) master.lookup("#lightsLabel"))
-                            .setText("Lights: " + (masterRoom.isLightsOn() ? "ON" : "OFF"));
+                            .setText("💡 Lights: " + (masterRoom.isLightsOn() ? "ON" : "OFF"));
 
                     ((Label) master.lookup("#acLabel"))
-                            .setText("AC: " + (masterRoom.isAcOn() ? "ON" : "OFF"));
+                            .setText("❄ AC: " + (masterRoom.isAcOn() ? "ON" : "OFF"));
 
                     ((Label) master.lookup("#tempLabel"))
-                            .setText("Temp: " + masterRoom.getTemperature() + "°C");
+                            .setText("🌡 Temp: " + masterRoom.getTemperature() + "°C");
 
                     ((Label) master.lookup("#doorLabel"))
-                            .setText("Door: " + (masterRoom.isDoorOpen() ? "Opened" : "Closed"));
+                            .setText("🚪 Door: " + (masterRoom.isDoorOpen() ? "Opened" : "Closed"));
 
-
-                    // Kids Room
+                    // ───── Kids room ─────────────────────
                     ((Label) kids.lookup("#lightsLabel"))
-                            .setText("Lights: " + (kidsRoom.isLightsOn() ? "ON" : "OFF"));
+                            .setText("💡 Lights: " + (kidsRoom.isLightsOn() ? "ON" : "OFF"));
 
                     ((Label) kids.lookup("#acLabel"))
-                            .setText("AC: " + (kidsRoom.isAcOn() ? "ON" : "OFF"));
+                            .setText("❄ AC: " + (kidsRoom.isAcOn() ? "ON" : "OFF"));
 
                     ((Label) kids.lookup("#tempLabel"))
-                            .setText("Temp: " + kidsRoom.getTemperature() + "°C");
+                            .setText("🌡 Temp: " + kidsRoom.getTemperature() + "°C");
 
                     ((Label) kids.lookup("#doorLabel"))
-                            .setText("Door: " + (masterRoom.isDoorOpen() ? "Opened" : "Closed"));
+                            .setText("🚪 Door: " + (masterRoom.isDoorOpen() ? "Opened" : "Closed"));
+
+                    // ───── Kitchen ─────────────────────
+                    ((Label) kkitchen.lookup("#lightsLabel"))
+                            .setText("💡 Lights: " + (kitchen.isLightsOn() ? "ON" : "OFF"));
+
+                    ((Label) kkitchen.lookup("#acLabel"))
+                            .setText("🔥 Stove: " + (kitchen.isStoveOn() ? "ON" : "OFF"));
+
+                    ((Label) kkitchen.lookup("#tempLabel"))
+                            .setText("🌡 Temp: " + kitchen.getTemperature() + "°C");
+
+                    ((Label) kkitchen.lookup("#doorLabel"))
+                            .setText("❄ Fridge: " + (kitchen.isFridgeOn() ? "ON" : "OFF"));
+
+                    // ───── Bathroom ─────────────────────
+                    ((Label) bath.lookup("#lightsLabel"))
+                            .setText("💡 Lights: " + (bathroom.isLightsOn() ? "ON" : "OFF"));
+
+                    ((Label) bath.lookup("#acLabel"))
+                            .setText("🔥 Heater: " + (bathroom.isHeaterOn() ? "ON" : "OFF"));
+
+                    ((Label) bath.lookup("#tempLabel"))
+                            .setText("🌡 Temp: " + bathroom.getWaterTemperature() + "°C");
+
+                    ((Label) bath.lookup("#doorLabel"))
+                            .setText("🚪 Door: " + (bathroom.isDoorOpen() ? "Opened" : "Closed"));
 
                 })
         );
@@ -2641,6 +2740,20 @@ public class SmartHomePanel extends Application {
             styleStatusF(status, !newVal);
         });
 
+        // ──── Changing over time ───────────────
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(15), e -> {
+
+                    boolean state = random.nextBoolean();
+                    bathroom.setOccupied(state);
+                    bathroom.setDoorOpen(!state);
+                })
+        );
+
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+
+
         VBox content = new VBox(10, status);
         content.setAlignment(Pos.CENTER);
 
@@ -3280,38 +3393,56 @@ public class SmartHomePanel extends Application {
     }
 
     // ──── Alarm ───────────────────
-    public VBox buildAlarm() {
+    public VBox buildAlarmCards() {
+        VBox alarmCards = new VBox(20);
+        alarmCards.setPadding(new
+
+                Insets(20));
+
+
+        HBox topBar = new HBox(0);
+        topBar.setPrefWidth(50);
+        topBar.setAlignment(Pos.CENTER_LEFT);
+
+        topBar.getChildren().
+
+                addAll(
+                        roomTitle("Alarm"));
+
+
+        alarmCards.setMaxWidth(Double.MAX_VALUE);
+        alarmCards.getChildren().addAll(
+                topBar,
+                card1(),
+                card2(),
+                card3()
+        );
+
+        return alarmCards;
+    }
+
+    // ──── Alarm ───────────────────
+    public VBox card1() {
 
         VBox card = new VBox(15);
-
         card.setPadding(new Insets(15));
         card.setPrefWidth(300);
         card.setPrefHeight(160);
 
-        card.setStyle(
-                "-fx-background-color: white;" +
-                        "-fx-background-radius: 18;" +
-                        "-fx-border-radius: 18;" +
-                        "-fx-border-color: #dfe7f2;"
-        );
+        card.setStyle("-fx-background-color: white;" +
+                "-fx-background-radius: 18;" +
+                "-fx-border-radius: 18;" +
+                "-fx-border-color: #dfe7f2;");
 
-        Label title = new Label("Alarm");
-        title.setStyle(
-                "-fx-font-size: 20px;" +
-                        "-fx-font-weight: bold;" +
-                        "-fx-text-fill: #133466;"
-        );
+        Label title = new Label("Alarm 1");
+        title.setStyle("-fx-font-size: 20px;-fx-font-weight: bold;-fx-text-fill: #c21e0c;");
 
         ComboBox<String> hourBox = new ComboBox<>();
-        for (int i = 1; i <= 12; i++) {
-            hourBox.getItems().add(String.format("%02d", i));
-        }
+        for (int i = 1; i <= 12; i++) hourBox.getItems().add(String.format("%02d", i));
         hourBox.setValue("07");
 
         ComboBox<String> minuteBox = new ComboBox<>();
-        for (int i = 0; i < 60; i++) {
-            minuteBox.getItems().add(String.format("%02d", i));
-        }
+        for (int i = 0; i < 60; i++) minuteBox.getItems().add(String.format("%02d", i));
         minuteBox.setValue("00");
 
         ComboBox<String> ampmBox = new ComboBox<>();
@@ -3322,31 +3453,32 @@ public class SmartHomePanel extends Application {
         timeRow.setAlignment(Pos.CENTER);
 
         Label status = new Label("Alarm OFF");
-        status.setStyle("-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1b55cf;");
+        status.setStyle("-fx-font-size: 15px;-fx-font-weight: bold;-fx-text-fill: #1b55cf;");
 
         Label msg = new Label();
-        msg.setStyle("-fx-font-size: 13px; -fx-text-fill: #666;");
+        msg.setStyle("-fx-font-size: 13px;-fx-text-fill: #666;");
 
         Button enableBtn = new Button("Enable Alarm");
-        enableBtn.setFocusTraversable(false);
-        enableBtn.setStyle(
-                "-fx-background-color: #1b55cf;" +
-                        "-fx-text-fill: white;" +
-                        "-fx-font-size: 14px;" +
-                        "-fx-font-weight: bold;" +
-                        "-fx-background-radius: 10;"
-        );
+        enableBtn.setStyle("-fx-background-color: #085405;" +
+                "-fx-text-fill: white;" +
+                "-fx-font-size: 15px;" +
+                "-fx-background-radius: 10;");
 
         Button stopBtn = new Button("Stop Alarm");
+        stopBtn.setStyle("-fx-background-color: #cf0c0c;" +
+                "-fx-text-fill: white;" +
+                "-fx-font-size: 15px;" +
+                "-fx-background-radius: 10;");
+
+        Button disableBtn = new Button("Disable Alarm");
+        disableBtn.setStyle("-fx-background-color: #1b55cf;" +
+                "-fx-text-fill: white;" +
+                "-fx-font-size: 15px;" +
+                "-fx-background-radius: 10;");
+
         stopBtn.setVisible(false);
-        stopBtn.setFocusTraversable(false);
-        stopBtn.setStyle(
-                "-fx-background-color: #d62828;" +
-                        "-fx-text-fill: white;" +
-                        "-fx-font-size: 14px;" +
-                        "-fx-font-weight: bold;" +
-                        "-fx-background-radius: 10;"
-        );
+
+        Timeline[] timeline = new Timeline[1];
 
         enableBtn.setOnAction(e -> {
 
@@ -3362,26 +3494,24 @@ public class SmartHomePanel extends Application {
             status.setText("Alarm ON");
             msg.setText("Alarm set for " + alarmTime);
 
-            Timeline alarmTimeline = new Timeline(
-                    new KeyFrame(Duration.seconds(1), ev -> {
+            timeline[0] = new Timeline(new KeyFrame(Duration.seconds(1), ev -> {
 
-                        LocalTime now = LocalTime.now();
+                LocalTime now = LocalTime.now();
 
-                        if (now.getHour() == alarmTime.getHour()
-                                && now.getMinute() == alarmTime.getMinute()
-                                && now.getSecond() == 0) {
+                if (now.getHour() == alarmTime.getHour()
+                        && now.getMinute() == alarmTime.getMinute()
+                        && now.getSecond() == 0) {
 
-                            status.setText("ALARM RINGING");
-                            msg.setText("Press stop to turn off");
-                            stopBtn.setVisible(true);
+                    status.setText("ALARM RINGING");
+                    msg.setText("Press stop to turn off");
+                    stopBtn.setVisible(true);
 
-                            masterRoom.setAlarm(alarmTime, new Scanner(System.in));
-                        }
-                    })
-            );
+                    masterRoom.setAlarm(alarmTime, new Scanner(System.in));
+                }
+            }));
 
-            alarmTimeline.setCycleCount(Animation.INDEFINITE);
-            alarmTimeline.play();
+            timeline[0].setCycleCount(Animation.INDEFINITE);
+            timeline[0].play();
         });
 
         stopBtn.setOnAction(e -> {
@@ -3391,7 +3521,246 @@ public class SmartHomePanel extends Application {
             stopBtn.setVisible(false);
         });
 
-        card.getChildren().addAll(title, timeRow, status, msg, enableBtn, stopBtn);
+        disableBtn.setOnAction(e -> {
+            if (timeline[0] != null) timeline[0].stop();
+            AlarmTime.stopAlarm();
+            status.setText("Alarm Disabled");
+            msg.setText("");
+            stopBtn.setVisible(false);
+        });
+
+        HBox buttons = new HBox(10, enableBtn, stopBtn, disableBtn);
+        card.getChildren().addAll(title, timeRow, status, msg, buttons);
+
+        allCards.add(card);
+
+        return card;
+    }
+
+    public VBox card2() {
+
+        VBox card = new VBox(15);
+        card.setPadding(new Insets(15));
+        card.setPrefWidth(300);
+        card.setPrefHeight(160);
+
+        card.setStyle("-fx-background-color: white;" +
+                "-fx-background-radius: 18;" +
+                "-fx-border-radius: 18;" +
+                "-fx-border-color: #dfe7f2;");
+
+        Label title = new Label("Alarm 2");
+        title.setStyle("-fx-font-size: 20px;-fx-font-weight: bold;-fx-text-fill: #c21e0c;");
+
+        ComboBox<String> hourBox = new ComboBox<>();
+        for (int i = 1; i <= 12; i++) hourBox.getItems().add(String.format("%02d", i));
+        hourBox.setValue("07");
+
+        ComboBox<String> minuteBox = new ComboBox<>();
+        for (int i = 0; i < 60; i++) minuteBox.getItems().add(String.format("%02d", i));
+        minuteBox.setValue("00");
+
+        ComboBox<String> ampmBox = new ComboBox<>();
+        ampmBox.getItems().addAll("AM", "PM");
+        ampmBox.setValue("AM");
+
+        HBox timeRow = new HBox(10, hourBox, minuteBox, ampmBox);
+        timeRow.setAlignment(Pos.CENTER);
+
+        Label status = new Label("Alarm OFF");
+        status.setStyle("-fx-font-size: 15px;-fx-font-weight: bold;-fx-text-fill: #1b55cf;");
+
+        Label msg = new Label();
+        msg.setStyle("-fx-font-size: 13px;-fx-text-fill: #666;");
+
+        Button enableBtn = new Button("Enable Alarm");
+        enableBtn.setStyle("-fx-background-color: #085405;" +
+                "-fx-text-fill: white;" +
+                "-fx-font-size: 15px;" +
+                "-fx-background-radius: 10;");
+
+        Button stopBtn = new Button("Stop Alarm");
+        stopBtn.setStyle("-fx-background-color: #cf0c0c;" +
+                "-fx-text-fill: white;" +
+                "-fx-font-size: 15px;" +
+                "-fx-background-radius: 10;");
+
+        Button disableBtn = new Button("Disable Alarm");
+        disableBtn.setStyle("-fx-background-color: #1b55cf;" +
+                "-fx-text-fill: white;" +
+                "-fx-font-size: 15px;" +
+                "-fx-background-radius: 10;");
+
+        stopBtn.setVisible(false);
+
+        Timeline[] timeline = new Timeline[1];
+
+        enableBtn.setOnAction(e -> {
+
+            int hour = Integer.parseInt(hourBox.getValue());
+            int minute = Integer.parseInt(minuteBox.getValue());
+            String period = ampmBox.getValue();
+
+            if (period.equals("PM") && hour != 12) hour += 12;
+            if (period.equals("AM") && hour == 12) hour = 0;
+
+            LocalTime alarmTime = LocalTime.of(hour, minute);
+
+            status.setText("Alarm ON");
+            msg.setText("Alarm set for " + alarmTime);
+
+            timeline[0] = new Timeline(new KeyFrame(Duration.seconds(1), ev -> {
+
+                LocalTime now = LocalTime.now();
+
+                if (now.getHour() == alarmTime.getHour()
+                        && now.getMinute() == alarmTime.getMinute()
+                        && now.getSecond() == 0) {
+
+                    status.setText("ALARM RINGING");
+                    msg.setText("Press stop to turn off");
+                    stopBtn.setVisible(true);
+
+                    masterRoom.setAlarm(alarmTime, new Scanner(System.in));
+                }
+            }));
+
+            timeline[0].setCycleCount(Animation.INDEFINITE);
+            timeline[0].play();
+        });
+
+        stopBtn.setOnAction(e -> {
+            AlarmTime.stopAlarm();
+            status.setText("Alarm OFF");
+            msg.setText("");
+            stopBtn.setVisible(false);
+        });
+
+        disableBtn.setOnAction(e -> {
+            if (timeline[0] != null) timeline[0].stop();
+            AlarmTime.stopAlarm();
+            status.setText("Alarm Disabled");
+            msg.setText("");
+            stopBtn.setVisible(false);
+        });
+
+        HBox buttons = new HBox(10, enableBtn, stopBtn, disableBtn);
+        card.getChildren().addAll(title, timeRow, status, msg, buttons);
+
+        allCards.add(card);
+
+        return card;
+    }
+
+    public VBox card3() {
+
+        VBox card = new VBox(15);
+        card.setPadding(new Insets(15));
+        card.setPrefWidth(300);
+        card.setPrefHeight(160);
+
+        card.setStyle("-fx-background-color: white;" +
+                "-fx-background-radius: 18;" +
+                "-fx-border-radius: 18;" +
+                "-fx-border-color: #dfe7f2;");
+
+        Label title = new Label("Alarm 3");
+        title.setStyle("-fx-font-size: 20px;-fx-font-weight: bold;-fx-text-fill: #c21e0c;");
+
+        ComboBox<String> hourBox = new ComboBox<>();
+        for (int i = 1; i <= 12; i++) hourBox.getItems().add(String.format("%02d", i));
+        hourBox.setValue("07");
+
+        ComboBox<String> minuteBox = new ComboBox<>();
+        for (int i = 0; i < 60; i++) minuteBox.getItems().add(String.format("%02d", i));
+        minuteBox.setValue("00");
+
+        ComboBox<String> ampmBox = new ComboBox<>();
+        ampmBox.getItems().addAll("AM", "PM");
+        ampmBox.setValue("AM");
+
+        HBox timeRow = new HBox(10, hourBox, minuteBox, ampmBox);
+        timeRow.setAlignment(Pos.CENTER);
+
+        Label status = new Label("Alarm OFF");
+        status.setStyle("-fx-font-size: 15px;-fx-font-weight: bold;-fx-text-fill: #1b55cf;");
+
+        Label msg = new Label();
+        msg.setStyle("-fx-font-size: 13px;-fx-text-fill: #666;");
+
+        Button enableBtn = new Button("Enable Alarm");
+        enableBtn.setStyle("-fx-background-color: #085405;" +
+                "-fx-text-fill: white;" +
+                "-fx-font-size: 15px;" +
+                "-fx-background-radius: 10;");
+
+        Button stopBtn = new Button("Stop Alarm");
+        stopBtn.setStyle("-fx-background-color: #cf0c0c;" +
+                "-fx-text-fill: white;" +
+                "-fx-font-size: 15px;" +
+                "-fx-background-radius: 10;");
+
+        Button disableBtn = new Button("Disable Alarm");
+        disableBtn.setStyle("-fx-background-color: #1b55cf;" +
+                "-fx-text-fill: white;" +
+                "-fx-font-size: 15px;" +
+                "-fx-background-radius: 10;");
+
+        stopBtn.setVisible(false);
+
+        Timeline[] timeline = new Timeline[1];
+
+        enableBtn.setOnAction(e -> {
+
+            int hour = Integer.parseInt(hourBox.getValue());
+            int minute = Integer.parseInt(minuteBox.getValue());
+            String period = ampmBox.getValue();
+
+            if (period.equals("PM") && hour != 12) hour += 12;
+            if (period.equals("AM") && hour == 12) hour = 0;
+
+            LocalTime alarmTime = LocalTime.of(hour, minute);
+
+            status.setText("Alarm ON");
+            msg.setText("Alarm set for " + alarmTime);
+
+            timeline[0] = new Timeline(new KeyFrame(Duration.seconds(1), ev -> {
+
+                LocalTime now = LocalTime.now();
+
+                if (now.getHour() == alarmTime.getHour()
+                        && now.getMinute() == alarmTime.getMinute()
+                        && now.getSecond() == 0) {
+
+                    status.setText("ALARM RINGING");
+                    msg.setText("Press stop to turn off");
+                    stopBtn.setVisible(true);
+
+                    masterRoom.setAlarm(alarmTime, new Scanner(System.in));
+                }
+            }));
+
+            timeline[0].setCycleCount(Animation.INDEFINITE);
+            timeline[0].play();
+        });
+
+        stopBtn.setOnAction(e -> {
+            AlarmTime.stopAlarm();
+            status.setText("Alarm OFF");
+            msg.setText("");
+            stopBtn.setVisible(false);
+        });
+
+        disableBtn.setOnAction(e -> {
+            if (timeline[0] != null) timeline[0].stop();
+            AlarmTime.stopAlarm();
+            status.setText("Alarm Disabled");
+            msg.setText("");
+            stopBtn.setVisible(false);
+        });
+
+        HBox buttons = new HBox(10, enableBtn, stopBtn, disableBtn);
+        card.getChildren().addAll(title, timeRow, status, msg, buttons);
 
         allCards.add(card);
 
