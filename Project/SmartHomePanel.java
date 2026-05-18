@@ -437,6 +437,7 @@ public class SmartHomePanel extends Application {
         VBox.setVgrow(spacer, Priority.ALWAYS);
         side.getChildren().add(spacer);
 
+        // ─────Sidebar -> Avatar─────────────
         HBox avatar = navRows("avatar", 50, "", "#c2c2c2", 16);
         mouseHover(avatar, "#133466", "#0a1e3d");
 
@@ -885,7 +886,7 @@ public class SmartHomePanel extends Application {
         try {
             imageView.setImage(new Image(IMAGES + imageName + ".png"));
         } catch (Exception e) {
-            System.out.println("Image not found");
+            System.out.println("");
         }
 
         VBox imgBox = new VBox(imageView);
@@ -977,7 +978,8 @@ public class SmartHomePanel extends Application {
             if (item != activeRoom) {
 
                 item.setStyle(
-                        "-fx-background-color: " + offColor + ";"
+                        "-fx-background-color: " + offColor + ";" +
+                                "-fx-background-radius: 15;"
                 );
             }
         });
@@ -1066,7 +1068,7 @@ public class SmartHomePanel extends Application {
                     : "#0a1e3d";
 
             activeRoom.setStyle(
-                    "-fx-background-color: " + normalColor + ";"
+                    "-fx-background-color: " + normalColor + ";" + "-fx-background-radius: 15;"
             );
         }
 
