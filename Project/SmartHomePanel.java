@@ -573,6 +573,7 @@ public class SmartHomePanel extends Application {
                 doorSecurity.isDoorOpen() ? "Opened" : "Closed"
         );
 
+
         VBox master = roomStatusCard(
                 "rBed",
                 "Master Room",
