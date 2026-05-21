@@ -9,7 +9,6 @@ public class MQTT {
     private String password = "Karim2006";
 
     private MqttClient client;
-
     private LivingRoom livingRoom;
     private MasterRoom masterRoom;
     private KidsRoom childrenRoom;
