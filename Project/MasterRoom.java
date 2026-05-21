@@ -210,12 +210,6 @@ public class MasterRoom extends SmartDevice {
                 updateStatus("Sleep Mode Activated");
             }
 
-            case "romance mode" -> {
-                setLightsOn(true);
-                setDoorOpen(false);
-                updateStatus("Romance Mode Activated");
-            }
-
             case "relax mode" -> {
                 setLightsOn(true);
                 setTvOn(true);

@@ -347,7 +347,8 @@ public class SmartHomePanel extends Application {
 
         // ─────Sidebar -> main─────────────
         HBox main = navRows("home", 24, "Main", "#c2c2c2", 16);
-        mouseHover(main, "#1d3e6e", "#0a1e3d");
+
+        mouseHover(main, "#1d3e6e");
 
         main.setOnMouseClicked(e -> {
 
@@ -365,7 +366,8 @@ public class SmartHomePanel extends Application {
 
         // ─────Sidebar -> rooms list─────────────
         HBox rooms = navRows("room", 24, "Rooms", "#c2c2c2", 16);
-        mouseHover(rooms, "#1d3e6e", "#0a1e3d");
+
+        mouseHover(rooms, "#1d3e6e");
 
         Region spacerArrow = new Region();
         HBox.setHgrow(spacerArrow, Priority.ALWAYS);
@@ -395,7 +397,9 @@ public class SmartHomePanel extends Application {
 
         // ─────Sidebar -> themes─────────────
         HBox themes = navRows("lightMode", 24, "Themes", "#c2c2c2", 16);
-        mouseHover(themes, "#133466", "#0a1e3d");
+
+        mouseHover(themes, "#1d3e6e");
+
         themes.setOnMouseClicked(e -> {
 
             if (!darkMode) {
@@ -412,7 +416,8 @@ public class SmartHomePanel extends Application {
 
         // ─────Sidebar -> Alarm─────────────
         HBox alarm = navRows("addAlarm", 24, "Alarms", "#c2c2c2", 16);
-        mouseHover(alarm, "#133466", "#0a1e3d");
+
+        mouseHover(alarm, "#1d3e6e");
 
         alarm.setOnMouseClicked(e -> {
 
@@ -426,7 +431,6 @@ public class SmartHomePanel extends Application {
                 enableLightMode();
                 darkMode = false;
             }
-
         });
 
         side.getChildren().addAll(alarm);
@@ -439,7 +443,8 @@ public class SmartHomePanel extends Application {
 
         // ─────Sidebar -> Avatar─────────────
         HBox avatar = navRows("avatar", 50, "", "#c2c2c2", 16);
-        mouseHover(avatar, "#133466", "#0a1e3d");
+
+        mouseHover(avatar, "#1d3e6e");
 
         Label nameLabel = new Label(name);
         TextField nameField = new TextField(name);
@@ -629,7 +634,7 @@ public class SmartHomePanel extends Application {
         );
 
         Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(0.0001), e -> {
+                new KeyFrame(Duration.seconds(0.5), e -> {
 
                     // ───── Living room ─────────────────────
                     ((Label) living.lookup("#lightsLabel"))
@@ -691,7 +696,8 @@ public class SmartHomePanel extends Application {
                             .setText("🔥 Heater: " + (bathroom.isHeaterOn() ? "ON" : "OFF"));
 
                     ((Label) bath.lookup("#tempLabel"))
-                            .setText("🌡 Temp: " + bathroom.getWaterTemperature() + "°C");
+                            .setText(String.format("🌡 Temp: %.1f°C",
+                                    bathroom.getWaterTemperature()));
 
                     ((Label) bath.lookup("#doorLabel"))
                             .setText("🚪 Door: " + (bathroom.isDoorOpen() ? "Opened" : "Closed"));
@@ -717,7 +723,7 @@ public class SmartHomePanel extends Application {
 
         // ─────Living room─────────────────────
         HBox living = navRows("living", 20, "Living Room", "#c2c2c2", 14);
-        mouseHover(living, "#133466", "#12294a");
+        mouseHover(living, "#1d3e6e");
         living.setOnMouseClicked(e -> {
             setScreen(buildLivingRoom());
             setActive(living, "#133466");
@@ -725,7 +731,7 @@ public class SmartHomePanel extends Application {
 
         // ─────Master room─────────────────────
         HBox master = navRows("masterRoom", 20, "Master room", "#c2c2c2", 14);
-        mouseHover(master, "#133466", "#12294a");
+        mouseHover(master, "#1d3e6e");
         master.setOnMouseClicked(e -> {
             setScreen(buildMasterRoom());
             setActive(master, "#133466");
@@ -733,7 +739,7 @@ public class SmartHomePanel extends Application {
 
         // ─────Kids room───────────────────────
         HBox kids = navRows("kidsRoom", 20, "Kids room", "#c2c2c2", 14);
-        mouseHover(kids, "#133466", "#12294a");
+        mouseHover(kids, "#1d3e6e");
         kids.setOnMouseClicked(e -> {
             setScreen(buildKidsRoom());
             setActive(kids, "#133466");
@@ -741,7 +747,7 @@ public class SmartHomePanel extends Application {
 
         // ─────Kitchen─────────────────────────
         HBox kitchen = navRows("kitchen", 20, "Kitchen", "#c2c2c2", 14);
-        mouseHover(kitchen, "#133466", "#12294a");
+        mouseHover(kitchen, "#1d3e6e");
         kitchen.setOnMouseClicked(e -> {
             setScreen(buildKitchen());
             setActive(kitchen, "#133466");
@@ -749,7 +755,7 @@ public class SmartHomePanel extends Application {
 
         // ─────Bathroom────────────────────────
         HBox bath = navRows("bathroom", 20, "Bathroom", "#c2c2c2", 14);
-        mouseHover(bath, "#133466", "#12294a");
+        mouseHover(bath, "#1d3e6e");
         bath.setOnMouseClicked(e -> {
             setScreen(buildBathroom());
             setActive(bath, "#133466");
@@ -757,7 +763,7 @@ public class SmartHomePanel extends Application {
 
         // ─────Outdoors────────────────────────
         HBox outdoors = navRows("outdoors", 20, "Outdoors", "#c2c2c2", 14);
-        mouseHover(outdoors, "#133466", "#12294a");
+        mouseHover(outdoors, "#1d3e6e");
         outdoors.setOnMouseClicked(e -> {
             setScreen(buildOutdoors());
             setActive(outdoors, "#133466");
@@ -765,7 +771,7 @@ public class SmartHomePanel extends Application {
 
         // ─────Cameras─────────────────────────
         HBox cameras = navRows("camera", 20, "Security", "#c2c2c2", 14);
-        mouseHover(cameras, "#133466", "#12294a");
+        mouseHover(cameras, "#1d3e6e");
         cameras.setOnMouseClicked(e -> {
             setScreen(buildSecurity());
             setActive(cameras, "#133466");
@@ -963,7 +969,7 @@ public class SmartHomePanel extends Application {
     }
 
     // ─────Mouse hover on box─────────────────────
-    public void mouseHover(HBox item, String onColor, String offColor) {
+    public void mouseHover(HBox item, String onColor) {
 
         item.setOnMouseEntered(e -> {
 
@@ -978,7 +984,7 @@ public class SmartHomePanel extends Application {
             if (item != activeRoom) {
 
                 item.setStyle(
-                        "-fx-background-color: " + offColor + ";" +
+                        "-fx-background-color: transparent;" +
                                 "-fx-background-radius: 15;"
                 );
             }
@@ -1063,12 +1069,9 @@ public class SmartHomePanel extends Application {
 
         if (activeRoom != null) {
 
-            String normalColor = (activeRoom.getParent() == roomsMenu)
-                    ? "#12294a"
-                    : "#0a1e3d";
-
             activeRoom.setStyle(
-                    "-fx-background-color: " + normalColor + ";" + "-fx-background-radius: 15;"
+                    "-fx-background-color: transparent;" +
+                            "-fx-background-radius: 15;"
             );
         }
 
@@ -1386,7 +1389,7 @@ public class SmartHomePanel extends Application {
         VBox card = result.card;
         ImageView img = result.imageView;
 
-        Image onImg = new Image(IMAGES + "TVOn.png");
+        Image onImg = new Image(IMAGES + "TVOnLiv.png");
         Image offImg = new Image(IMAGES + "TVOff.png");
 
         Label status = new Label();
