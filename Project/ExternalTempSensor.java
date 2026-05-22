@@ -20,9 +20,8 @@ public class ExternalTempSensor extends SmartDevice {
 
     // ──────Constructor───────────────────────────────────────
     public ExternalTempSensor(String deviceId, String name, String room,
-                              double temperature, double humidity) {
+                              double temperature) {
         super(deviceId, name, room);
-
         this.temperature.set(temperature);
         updateStatus("Device Initialized");
     }
@@ -86,7 +85,6 @@ public class ExternalTempSensor extends SmartDevice {
     public void setTemperature(double v) {
         temperature.set(v);
     }
-
 
     public double getHeatThreshold() {
         return heatThreshold;

@@ -139,8 +139,7 @@ public class SmartHomePanel extends Application {
                 "7",
                 "Temp sensor",
                 "Outdoors",
-                25,
-                30
+                25
         );
 
         waterSystem = new GardenWaterSystem(
