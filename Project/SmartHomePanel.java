@@ -189,6 +189,7 @@ public class SmartHomePanel extends Application {
         primaryStage.show();
     }
 
+
     //─────Main program ───────────────────────────
     public void loadProgram() {
 
