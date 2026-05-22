@@ -148,10 +148,9 @@ public class SmartHomePanel extends Application {
                 "Water system",
                 "Outdoors",
                 false,
-                20.5,
-                false,
                 false,
                 30
+
         );
 
         camera = new Camera(
@@ -160,8 +159,6 @@ public class SmartHomePanel extends Application {
                 "Security",
                 false,
                 false,
-                false,
-                512,
                 false
         );
 

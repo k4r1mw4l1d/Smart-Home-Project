@@ -9,21 +9,12 @@
 
 import javafx.beans.property.*;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+public class Door_security extends SmartDevice {
 
-public class Door_security extends SmartDevice implements Alertable {
-
-    private static final DateTimeFormatter FMT =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     // ───Attributes────────────────────────────────────────────
     private final BooleanProperty doorOpen = new SimpleBooleanProperty(false);
     private final BooleanProperty motionDetected = new SimpleBooleanProperty(false);
     private final BooleanProperty alarmTriggered = new SimpleBooleanProperty(false);
-    private final StringProperty lastEvent = new SimpleStringProperty("None");
-    private final List<String> alertHistory = new ArrayList<>();
 
     // ──────Constructor───────────────────────────────────────
     public Door_security(String deviceId, String name, String room,
@@ -31,8 +22,6 @@ public class Door_security extends SmartDevice implements Alertable {
         super(deviceId, name, room);
         this.doorOpen.set(doorOpen);
         this.motionDetected.set(motionDetected);
-
-
         updateStatus("Device Initialized");
     }
 
@@ -41,8 +30,7 @@ public class Door_security extends SmartDevice implements Alertable {
     public void readState() {
         updateStatus(String.format("Door=%s Locked=%s Alarm=%s LastEvent=%s",
                 isDoorOpen() ? "OPEN" : "CLOSED",
-                isAlarmTriggered() ? "TRIGGERED" : "CLEAR",
-                lastEvent.get()));
+                isAlarmTriggered() ? "TRIGGERED" : "CLEAR"));
     }
 
     // ────Sending commands to devices─────────────────────
@@ -74,21 +62,6 @@ public class Door_security extends SmartDevice implements Alertable {
                 (alarmTriggered.get() ? " 🚨 " : " ✅ ");
     }
 
-    // ──────Alertable interface──────────────────────────
-    @Override
-    public void triggerAlert(String message) {
-        String entry = "[" + LocalDateTime.now().format(FMT) + "] " + message;
-        alertHistory.add(entry);
-        setAlarmTriggered(true);
-        lastEvent.set(message);
-        System.out.println("DOOR SECURITY ALERT: " + entry);
-    }
-
-    @Override
-    public List<String> getAlertHistory() {
-        return new ArrayList<>(alertHistory);
-    }
-
 
     // ─────JavaFX property & binding───────────────────────
     public BooleanProperty doorOpenProperty() {
@@ -97,10 +70,6 @@ public class Door_security extends SmartDevice implements Alertable {
 
     public BooleanProperty alarmTriggeredProperty() {
         return alarmTriggered;
-    }
-
-    public StringProperty lastEventProperty() {
-        return lastEvent;
     }
 
     public BooleanProperty motionDetectedProperty() {

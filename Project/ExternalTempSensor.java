@@ -9,22 +9,12 @@
 
 import javafx.beans.property.*;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
-public class ExternalTempSensor extends SmartDevice implements Alertable {
+public class ExternalTempSensor extends SmartDevice {
 
-    private static final DateTimeFormatter FMT =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     // ───Attributes────────────────────────────────────────────
     private final DoubleProperty temperature = new SimpleDoubleProperty(0);
     private final StringProperty weatherDesc = new SimpleStringProperty("Unknown");
-    private final DoubleProperty dailyMinTemp = new SimpleDoubleProperty(Double.MAX_VALUE);
-    private final DoubleProperty dailyMaxTemp = new SimpleDoubleProperty(Double.MIN_VALUE);
-    private final BooleanProperty alertActive = new SimpleBooleanProperty(false);
-    private final List<String> alertHistory = new ArrayList<>();
     private double heatThreshold = 40.0;
     private double frostThreshold = 0.0;
 
@@ -32,10 +22,7 @@ public class ExternalTempSensor extends SmartDevice implements Alertable {
     public ExternalTempSensor(String deviceId, String name, String room,
                               double temperature, double humidity) {
         super(deviceId, name, room);
-        this.temperature.addListener((obs, oldV, newV) -> {
-            updateDailyMinMax(newV.doubleValue());
-            checkThresholds(newV.doubleValue());
-        });
+
         this.temperature.set(temperature);
         updateStatus("Device Initialized");
     }
@@ -45,8 +32,7 @@ public class ExternalTempSensor extends SmartDevice implements Alertable {
     public void readState() {
         updateStatus(String.format(
                 "Temp=%.1f°C Condition=%s Min=%.1f°C Max=%.1f°C",
-                getTemperature(), weatherDesc.get(),
-                getDailyMinTemp(), getDailyMaxTemp()));
+                getTemperature(), weatherDesc.get()));
     }
 
     // ────Sending commands to devices─────────────────────
@@ -69,8 +55,6 @@ public class ExternalTempSensor extends SmartDevice implements Alertable {
                 updateStatus("INVALID threshold value");
             }
         } else if (cmd.toLowerCase().equals("reset daily log")) {
-            dailyMinTemp.set(Double.MAX_VALUE);
-            dailyMaxTemp.set(Double.MIN_VALUE);
             updateStatus("Daily min/max log reset");
         } else {
             updateStatus("INVALID COMMAND (sensor is read-only)");
@@ -80,51 +64,10 @@ public class ExternalTempSensor extends SmartDevice implements Alertable {
     // ──────Visual icons for status──────────────────────
     @Override
     public String getStatusIcon() {
-        double t = getTemperature();
-        String tempIcon = t >= heatThreshold ? " 🌡🔴 " :
-                t <= frostThreshold ? " 🌡🔵 " : " 🌡🟢 ";
-        return tempIcon + " 💧 " + (alertActive.get() ? " ⚠ " : " ✅ ");
+        return (getTemperature() >= heatThreshold ? " 🌡🔴 " :
+                getTemperature() <= frostThreshold ? " 🌡🔵 " : " 🌡🟢 ");
     }
 
-    // ──────Alertable interface──────────────────────────
-    @Override
-    public void triggerAlert(String message) {
-        String entry = "[" + LocalDateTime.now().format(FMT) + "] " + message;
-        alertHistory.add(entry);
-        alertActive.set(true);
-        System.out.println("TEMP SENSOR ALERT: " + entry);
-        updateStatus(message);
-    }
-
-    @Override
-    public List<String> getAlertHistory() {
-        return new ArrayList<>(alertHistory);
-    }
-
-    // ──────Internal helpers───────────────────────────
-    private void updateDailyMinMax(double temp) {
-        if (temp < dailyMinTemp.get()) dailyMinTemp.set(temp);
-        if (temp > dailyMaxTemp.get()) dailyMaxTemp.set(temp);
-    }
-
-    private void checkThresholds(double temp) {
-        if (temp >= heatThreshold) {
-            triggerAlert("⚠ HEAT ALERT: External temperature is " + temp + "°C");
-        } else if (temp <= frostThreshold) {
-            triggerAlert("⚠ FROST ALERT: External temperature is " + temp + "°C");
-        } else {
-            alertActive.set(false);
-        }
-    }
-
-    private void updateWeatherDesc(double temp, double hum) {
-        if (temp >= 35) weatherDesc.set("Scorching Hot");
-        else if (temp >= 28) weatherDesc.set("Hot");
-        else if (temp >= 20) weatherDesc.set(hum > 70 ? "Warm & Humid" : "Warm");
-        else if (temp >= 10) weatherDesc.set("Cool");
-        else if (temp >= 0) weatherDesc.set("Cold");
-        else weatherDesc.set("Freezing");
-    }
 
     // ─────JavaFX property & binding───────────────────────
     public DoubleProperty temperatureProperty() {
@@ -133,18 +76,6 @@ public class ExternalTempSensor extends SmartDevice implements Alertable {
 
     public StringProperty weatherDescProperty() {
         return weatherDesc;
-    }
-
-    public DoubleProperty dailyMinTempProperty() {
-        return dailyMinTemp;
-    }
-
-    public DoubleProperty dailyMaxTempProperty() {
-        return dailyMaxTemp;
-    }
-
-    public BooleanProperty alertActiveProperty() {
-        return alertActive;
     }
 
     // ───────Setter & Getters───────────────────────────────
@@ -156,13 +87,6 @@ public class ExternalTempSensor extends SmartDevice implements Alertable {
         temperature.set(v);
     }
 
-    public double getDailyMinTemp() {
-        return dailyMinTemp.get();
-    }
-
-    public double getDailyMaxTemp() {
-        return dailyMaxTemp.get();
-    }
 
     public double getHeatThreshold() {
         return heatThreshold;
