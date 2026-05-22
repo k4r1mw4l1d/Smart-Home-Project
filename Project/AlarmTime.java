@@ -1,21 +1,18 @@
 import javax.sound.sampled.*;
 import java.time.LocalTime;
-import java.util.Scanner;
 
 public class AlarmTime implements Runnable {
 
     private static final String SOUND_PATH = "alarmSound/iphone_alarm.wav";
-    private static Clip clip;
     private final LocalTime alarmTime;
-    private final Scanner scan;
+    private Clip clip;
 
-    AlarmTime(LocalTime alarmTime, Scanner scan) {
+    public AlarmTime(LocalTime alarmTime) {
 
         this.alarmTime = alarmTime;
-        this.scan = scan;
     }
 
-    public static void stopAlarm() {
+    public void stopAlarm() {
 
         if (clip != null && clip.isRunning()) {
 
@@ -61,4 +58,5 @@ public class AlarmTime implements Runnable {
             e.printStackTrace();
         }
     }
+
 }

@@ -6,10 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="fixed all bugs2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/MQTT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/MQTT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/MQTT$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/MQTT$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/MQTT.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/MQTT.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/AlarmTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/AlarmTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/CardImages.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/CardImages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/MasterRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/MasterRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/SmartHomePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/SmartHomePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/AlarmTime.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/AlarmTime.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/MasterRoom.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/MasterRoom.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/SmartHomePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/SmartHomePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/images/TVOnLiv.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/images/TVOnLiv.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/TVOnLiv.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/TVOnLiv.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +93,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "rearrange.code.on.save": "true",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Java"
   }
 }]]></component>
@@ -226,7 +232,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779399013106</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="fixed all bugs2">
+      <option name="closed" value="true" />
+      <created>1779442787321</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1779442787321</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

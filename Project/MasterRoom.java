@@ -21,6 +21,7 @@ public class MasterRoom extends SmartDevice {
     private final StringProperty smartScene = new SimpleStringProperty("");
     private final BooleanProperty acOn = new SimpleBooleanProperty(false);
     private final BooleanProperty tvOn = new SimpleBooleanProperty(false);
+    private AlarmTime currentAlarm;
 
     // ──────Constructor───────────────────────────────────────
     public MasterRoom(String deviceId, String name, String room, boolean lightsOn, double temperature,
@@ -223,10 +224,21 @@ public class MasterRoom extends SmartDevice {
     }
 
     // ──────Set Alarm──────────────────────────────────
-    public void setAlarm(LocalTime alarmTime, Scanner scan) {
-        Thread alarmThread = new Thread(new AlarmTime(alarmTime, scan));
+    public void setAlarm(LocalTime alarmTime) {
+        currentAlarm = new AlarmTime(alarmTime);
+
+        Thread alarmThread = new Thread(currentAlarm);
         alarmThread.setDaemon(true);
         alarmThread.start();
+
         updateStatus("Alarm set for " + alarmTime);
+    }
+
+    public void stopAlarm() {
+        if (currentAlarm != null) {
+            currentAlarm.stopAlarm();
+            currentAlarm = null;
+        }
+        updateStatus("Alarm stopped");
     }
 }
