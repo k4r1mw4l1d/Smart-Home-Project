@@ -9,6 +9,7 @@
 
 import javafx.beans.property.*;
 
+
 public class GardenWaterSystem extends SmartDevice {
     // ───Attributes────────────────────────────────────────────
     private final BooleanProperty wateringOn = new SimpleBooleanProperty(false);

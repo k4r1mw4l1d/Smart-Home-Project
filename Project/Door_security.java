@@ -7,6 +7,7 @@
  *                  5. Auto-lock timer flag.
  */
 
+
 import javafx.beans.property.*;
 
 public class Door_security extends SmartDevice {

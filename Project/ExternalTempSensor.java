@@ -7,6 +7,7 @@
  *                  5. Min / Max daily log.
  */
 
+
 import javafx.beans.property.*;
 
 
