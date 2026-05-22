@@ -25,21 +25,18 @@ public class ExternalTempSensor extends SmartDevice implements Alertable {
     private final DoubleProperty dailyMaxTemp = new SimpleDoubleProperty(Double.MIN_VALUE);
     private final BooleanProperty alertActive = new SimpleBooleanProperty(false);
     private final List<String> alertHistory = new ArrayList<>();
-    private double heatThreshold = 40.0;   // °C — configurable
-    private double frostThreshold = 0.0;    // °C — configurable
+    private double heatThreshold = 40.0;
+    private double frostThreshold = 0.0;
 
     // ──────Constructor───────────────────────────────────────
     public ExternalTempSensor(String deviceId, String name, String room,
                               double temperature, double humidity) {
         super(deviceId, name, room);
-
-        // Listener fires threshold checks on every temperature change
         this.temperature.addListener((obs, oldV, newV) -> {
             updateDailyMinMax(newV.doubleValue());
             checkThresholds(newV.doubleValue());
         });
         this.temperature.set(temperature);
-
         updateStatus("Device Initialized");
     }
 
@@ -55,7 +52,6 @@ public class ExternalTempSensor extends SmartDevice implements Alertable {
     // ────Sending commands to devices─────────────────────
     @Override
     public void sendCommand(String cmd) {
-        // Sensors are read-only devices; only configuration commands accepted
         if (cmd.toLowerCase().startsWith("set heat threshold ")) {
             try {
                 double val = Double.parseDouble(cmd.substring(19).trim());

@@ -24,7 +24,6 @@ public class Door_security extends SmartDevice implements Alertable {
     private final BooleanProperty alarmTriggered = new SimpleBooleanProperty(false);
     private final StringProperty lastEvent = new SimpleStringProperty("None");
     private final List<String> alertHistory = new ArrayList<>();
-    private final List<String> entryLog = new ArrayList<>();
 
     // ──────Constructor───────────────────────────────────────
     public Door_security(String deviceId, String name, String room,
@@ -90,16 +89,6 @@ public class Door_security extends SmartDevice implements Alertable {
         return new ArrayList<>(alertHistory);
     }
 
-    // ──────Entry log──────────────────────────────────
-    private void logEntry(String event) {
-        String entry = "[" + LocalDateTime.now().format(FMT) + "] " + event;
-        entryLog.add(entry);
-        lastEvent.set(event);
-    }
-
-    public List<String> getEntryLog() {
-        return new ArrayList<>(entryLog);
-    }
 
     // ─────JavaFX property & binding───────────────────────
     public BooleanProperty doorOpenProperty() {

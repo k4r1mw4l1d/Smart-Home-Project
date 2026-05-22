@@ -26,9 +26,8 @@ public class GardenWaterSystem extends SmartDevice {
     private final DoubleProperty waterUsedLiters = new SimpleDoubleProperty(0);
     private final StringProperty scheduleTime = new SimpleStringProperty("06:00");
     private final List<String> wateringLog = new ArrayList<>();
-    // Thresholds for auto-mode
-    private double dryThreshold = 30.0;   // start watering below this moisture %
-    private double wetThreshold = 70.0;   // stop watering above this moisture %
+    private double dryThreshold = 30.0;
+    private double wetThreshold = 70.0;
 
     // ──────Constructor───────────────────────────────────────
     public GardenWaterSystem(String deviceId, String name, String room,
@@ -38,14 +37,11 @@ public class GardenWaterSystem extends SmartDevice {
         this.rainDetected.set(rainDetected);
         this.autoModeOn.set(autoModeOn);
         this.humidity.set(humidity);
-
-        // Listener: auto-mode reacts to soil moisture changes
         this.soilMoisture.addListener((obs, oldV, newV) -> {
             if (isAutoModeOn()) autoControl(newV.doubleValue());
         });
         this.soilMoisture.set(soilMoisture);
 
-        // Apply initial watering state after listeners are set
         if (wateringOn) startWatering();
 
         updateStatus("Device Initialized");
@@ -87,11 +83,10 @@ public class GardenWaterSystem extends SmartDevice {
             }
 
             default -> {
-                // e.g. "schedule 07:30"
                 if (cmd.toLowerCase().startsWith("schedule ")) {
                     String time = cmd.substring(9).trim();
                     scheduleTime.set(time);
-                    updateStatus("Watering scheduled at " + time);
+                    updateStatus(STR."Watering scheduled at \{time}");
                 } else {
                     updateStatus("INVALID COMMAND");
                 }
@@ -132,22 +127,9 @@ public class GardenWaterSystem extends SmartDevice {
         }
     }
 
-    /**
-     * Call periodically (e.g. every second) to accumulate usage while watering.
-     */
-    public void tickWaterUsage(double litersPerTick) {
-        if (isWateringOn()) {
-            waterUsedLiters.set(waterUsedLiters.get() + litersPerTick);
-        }
-    }
-
     private void logSession(String event) {
         wateringLog.add("[" + LocalTime.now().format(FMT) + "] " + event +
                 " | Moisture=" + String.format("%.1f%%", soilMoisture.get()));
-    }
-
-    public List<String> getWateringLog() {
-        return new ArrayList<>(wateringLog);
     }
 
     // ─────JavaFX property & binding───────────────────────

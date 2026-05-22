@@ -161,7 +161,6 @@ public class SmartHomePanel extends Application {
                 false,
                 false,
                 false,
-                "1080",
                 512,
                 false
         );
