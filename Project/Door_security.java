@@ -29,7 +29,7 @@ public class Door_security extends SmartDevice {
     // ─────Reading device state───────────────────────────
     @Override
     public void readState() {
-        updateStatus(String.format("Door=%s Locked=%s Alarm=%s LastEvent=%s",
+        updateStatus(String.format("Door=%s Alarm=%s",
                 isDoorOpen() ? "OPEN" : "CLOSED",
                 isAlarmTriggered() ? "TRIGGERED" : "CLEAR"));
     }
@@ -47,6 +47,19 @@ public class Door_security extends SmartDevice {
                 setDoorOpen(false);
                 updateStatus("Door CLOSED");
             }
+            case "motion detected" -> {
+                setMotionDetected(true);
+                updateStatus("Motion detected near door");
+
+                if (!isDoorOpen()) {
+                    setAlarmTriggered(true);
+                }
+            }
+
+            case "motion clear" -> {
+                setMotionDetected(false);
+                updateStatus("Motion cleared");
+            }
 
             case "reset alarm" -> {
                 setAlarmTriggered(false);
@@ -60,6 +73,7 @@ public class Door_security extends SmartDevice {
     @Override
     public String getStatusIcon() {
         return (doorOpen.get() ? " 🚪 " : " 🔐 ") +
+                (motionDetected.get() ? " 🚶 " : " 🏠 ") +
                 (alarmTriggered.get() ? " 🚨 " : " ✅ ");
     }
 

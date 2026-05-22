@@ -1,10 +1,8 @@
 /*
  *    ============External Temperature Sensor============
  *    consists of : 1. Real-time outdoor temperature reading.
- *                  2. Humidity tracking.
- *                  3. Heat / Frost alert thresholds.
- *                  4. Weather condition description.
- *                  5. Min / Max daily log.
+ *                  2. Heat / Frost alert thresholds.
+ *                  3. Weather condition description.
  */
 
 
@@ -31,7 +29,7 @@ public class ExternalTempSensor extends SmartDevice {
     @Override
     public void readState() {
         updateStatus(String.format(
-                "Temp=%.1f°C Condition=%s Min=%.1f°C Max=%.1f°C",
+                "Temp=%.1f°C Condition=%s",
                 getTemperature(), weatherDesc.get()));
     }
 
@@ -105,5 +103,9 @@ public class ExternalTempSensor extends SmartDevice {
 
     public String getWeatherDesc() {
         return weatherDesc.get();
+    }
+
+    public void setWeatherDesc(String v) {
+        weatherDesc.set(v);
     }
 }

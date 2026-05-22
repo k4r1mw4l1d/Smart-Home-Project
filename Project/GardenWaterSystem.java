@@ -36,7 +36,7 @@ public class GardenWaterSystem extends SmartDevice {
     @Override
     public void readState() {
         updateStatus(String.format(
-                "Watering=%s Moisture=%.1f%% Rain=%s AutoMode=%s WaterUsed=%.2fL Schedule=%s",
+                "Watering=%s Moisture=%.1f%% Rain=%s WaterUsed=%.2fL",
                 isWateringOn() ? "ON" : "OFF",
                 isRainDetected() ? "YES" : "NO",
                 getWaterUsedLiters()));

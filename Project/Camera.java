@@ -47,7 +47,15 @@ public class Camera extends SmartDevice {
     public void sendCommand(String cmd) {
         switch (cmd.toLowerCase()) {
 
+            case "record on" -> {
+                setRecording(true);
+                updateStatus("Recording ON");
+            }
 
+            case "record off" -> {
+                setRecording(false);
+                updateStatus("Recording OFF");
+            }
             case "night vision on" -> {
                 setNightVision(true);
                 updateStatus("Night vision ON");
@@ -71,13 +79,6 @@ public class Camera extends SmartDevice {
             case "motion clear" -> {
                 setMotionDetected(false);
                 updateStatus("Motion clear");
-            }
-
-            case "reset view" -> {
-                updateStatus("Camera view reset to center");
-            }
-            case "format storage" -> {
-                updateStatus("Storage formatted");
             }
 
             default -> {
