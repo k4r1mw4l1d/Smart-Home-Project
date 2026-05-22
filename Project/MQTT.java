@@ -48,6 +48,7 @@ public class MQTT {
                             if (livingRoom != null) livingRoom.setTemperature(temp);
                             if (masterRoom != null) masterRoom.setTemperature(temp);
                             if (kitchen != null) kitchen.setTemperature(temp);
+                            if (childrenRoom != null) childrenRoom.setTemperature(temp);
                         } else if (topic.contains("/light")) {
                             boolean state = payload.equalsIgnoreCase("ON");
                             if (topic.contains("livingroom")) livingRoom.setLightsOn(state);
@@ -58,13 +59,6 @@ public class MQTT {
                         } else if (topic.equals("home/kidsroom/ac")) {          // ← add this block
                             boolean state = payload.equalsIgnoreCase("ON");
                             childrenRoom.setAcOn(state);
-                        } else if (topic.equals("home/all/temp")) {
-                            double temp = Double.parseDouble(payload);
-                            if (livingRoom != null) livingRoom.setTemperature(temp);
-                            if (masterRoom != null) masterRoom.setTemperature(temp);
-                            if (childrenRoom != null) childrenRoom.setTemperature(temp); // ← add this
-                            if (kitchen != null) kitchen.setTemperature(temp);
-                            if (childrenRoom != null) childrenRoom.setTemperature(temp);
                         }
                     });
                 }

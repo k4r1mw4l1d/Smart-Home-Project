@@ -487,6 +487,7 @@ public class SmartHomePanel extends Application {
             }
         });
 
+
         side.getChildren().add(avatar);
 
         return side;
