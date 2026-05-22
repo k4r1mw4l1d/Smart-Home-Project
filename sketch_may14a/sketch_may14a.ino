@@ -94,17 +94,23 @@ void setup_wifi(){
 }
 
 void handleButtons(){
+  static bool stableButtonState[5] = {HIGH, HIGH, HIGH, HIGH, HIGH};
+
   for(int i = 0; i < 5; i++){
     Button *b = &buttons[i]; 
     bool reading = digitalRead(b->pin);
+    if (reading != b->lastReading) {
+      b->lastDebounce = millis();
+    }
 
-    if(reading != b->lastReading) b->lastDebounce = millis();
-
-    if((millis() - b->lastDebounce) > DEBOUNCE_DELAY){
-      if(reading == LOW && b->lastReading == HIGH){
-        *(b->roomState) = !(*(b->roomState));
-        digitalWrite(b->ledPin, *(b->roomState) ? HIGH : LOW);
-        publishLight(b->topic, *(b->roomState));
+    if ((millis() - b->lastDebounce) > DEBOUNCE_DELAY) {
+      if (reading != stableButtonState[i]) {
+        stableButtonState[i] = reading;
+        if (stableButtonState[i] == LOW) {
+          *(b->roomState) = !(*(b->roomState));
+          digitalWrite(b->ledPin, *(b->roomState) ? HIGH : LOW);
+          publishLight(b->topic, *(b->roomState));
+        }
       }
     }
     b->lastReading = reading;
@@ -124,7 +130,7 @@ void readTemp(){
     float temp = dht.readTemperature();
     
     if(!isnan(temp)){
-      String tempStr = String(t, 1); 
+      String tempStr = String(temp, 1); 
       client.publish("home/all/temp", tempStr.c_str());
     } 
     else{

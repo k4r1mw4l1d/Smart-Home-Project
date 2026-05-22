@@ -6,12 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="3 alarms&#10;main name&#10;scrollPane">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/MasterRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/MasterRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/SmartHomePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/SmartHomePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/MasterRoom.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/MasterRoom.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/MQTT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/MQTT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/MQTT$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/MQTT$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/MQTT.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/MQTT.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/SmartHomePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/SmartHomePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/images/TVOn.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/images/TVOn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/TVOn.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/TVOn.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sketch_may14a/sketch_may14a.ino" beforeDir="false" afterPath="$PROJECT_DIR$/sketch_may14a/sketch_may14a.ino" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +80,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "#7 on main",
+    "git-widget-placeholder": "main",
     "ignore.preview.features.used": "true",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -100,13 +99,6 @@
       <recent name="D:\SmartHome\Project\resources" />
       <recent name="D:\SmartHome\Project" />
     </key>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.32098.37" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
