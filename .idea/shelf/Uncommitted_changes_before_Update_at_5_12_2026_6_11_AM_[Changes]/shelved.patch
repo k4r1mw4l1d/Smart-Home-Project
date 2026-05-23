@@ -1,0 +1,140 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"2f640dfd-2606-41e6-a330-7b5201e60620\" name=\"Changes\" comment=\"master room&#10;kids room&#10;bathroom\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Project/Bathroom.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Project/Bathroom.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Project/KidsRoom.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Project/KidsRoom.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Project/MasterRoom.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Project/MasterRoom.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Project/mainApp.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Project/mainApp.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n        <option value=\"Interface\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"FormatOnSaveOptions\">\r\n    <option name=\"myRunOnSave\" value=\"true\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\"><![CDATA[{\r\n  \"history\": [\r\n    {\r\n      \"state\": \"MERGED\",\r\n      \"assignee\": \"3mr-khaled0\",\r\n      \"author\": \"3mr-khaled0\"\r\n    }\r\n  ],\r\n  \"lastFilter\": {\r\n    \"state\": \"MERGED\",\r\n    \"assignee\": \"3mr-khaled0\",\r\n    \"author\": \"3mr-khaled0\"\r\n  }\r\n}]]></component>\r\n  <component name=\"GithubPullRequestsUISettings\"><![CDATA[{\r\n  \"selectedUrlAndAccountId\": {\r\n    \"url\": \"https://github.com/3mr-khaled0/Smart-Home-Project.git\",\r\n    \"accountId\": \"2371cb57-a9f1-42d4-89a9-ebce0903dbb7\"\r\n  }\r\n}]]></component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 5\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"3BU5RxQ5hwV8x8xEJaU02NB86n2\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.mainApp.executor\": \"Run\",\r\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"ignore.virus.scanning.warn.message\": \"true\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/User/Desktop/Smart-Home-Project\",\r\n    \"project.structure.last.edited\": \"Project\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.2\",\r\n    \"rearrange.code.on.save\": \"true\",\r\n    \"settings.editor.selected.configurable\": \"reference.settingsdialog.IDE.editor.colors.Java\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.32098.37\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"2f640dfd-2606-41e6-a330-7b5201e60620\" name=\"Changes\" comment=\"\" />\r\n      <created>1774530803718</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1774530803718</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"master room&#10;kids room&#10;bathroom\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1777824766942</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1777824766942</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"master room&#10;kids room&#10;bathroom\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"master room&#10;kids room&#10;bathroom\" />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 5d755397dc98cfebbe5cae37063150451959a72b)
++++ b/.idea/workspace.xml	(date 1778419511426)
+@@ -4,12 +4,8 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="master room&#10;kids room&#10;bathroom">
++    <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="Door security&#10;External Temp Sensor&#10;garden water system &#10;Camera &#10;Motion sensor">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Project/Bathroom.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Bathroom.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Project/KidsRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/KidsRoom.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Project/MasterRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/MasterRoom.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Project/mainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/mainApp.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -19,8 +15,9 @@
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
+-        <option value="Class" />
+         <option value="Interface" />
++        <option value="JavaFXApplication" />
++        <option value="Class" />
+       </list>
+     </option>
+   </component>
+@@ -30,26 +27,30 @@
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+-  "history": [
++  <component name="GitHubPullRequestSearchHistory">{
++  &quot;history&quot;: [
+     {
+-      "state": "MERGED",
+-      "assignee": "3mr-khaled0",
+-      "author": "3mr-khaled0"
++      &quot;state&quot;: &quot;MERGED&quot;,
++      &quot;assignee&quot;: &quot;3mr-khaled0&quot;,
++      &quot;author&quot;: &quot;3mr-khaled0&quot;
+     }
+   ],
+-  "lastFilter": {
+-    "state": "MERGED",
+-    "assignee": "3mr-khaled0",
+-    "author": "3mr-khaled0"
++  &quot;lastFilter&quot;: {
++    &quot;state&quot;: &quot;MERGED&quot;,
++    &quot;assignee&quot;: &quot;3mr-khaled0&quot;,
++    &quot;author&quot;: &quot;3mr-khaled0&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="GithubPullRequestsUISettings"><![CDATA[{
+   "selectedUrlAndAccountId": {
+-    "url": "https://github.com/3mr-khaled0/Smart-Home-Project.git",
+-    "accountId": "2371cb57-a9f1-42d4-89a9-ebce0903dbb7"
++    "url": "https://github.com/k4r1mw4l1d/Smart-Home-Project.git",
++    "accountId": "44addcd5-b501-4b76-a120-f67cceb3b2ce"
+   }
+ }]]></component>
++  <component name="McpProjectServerCommands">
++    <commands />
++    <urls />
++  </component>
+   <component name="ProjectColorInfo">{
+   &quot;associatedIndex&quot;: 5
+ }</component>
+@@ -65,17 +66,28 @@
+   "keyToString": {
+     "Application.mainApp.executor": "Run",
+     "ModuleVcsDetector.initialDetectionPerformed": "true",
++    "RunOnceActivity.MCP Project settings loaded": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "RunOnceActivity.git.unshallow": "true",
++    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
++    "codeWithMe.voiceChat.enabledByDefault": "false",
++    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+     "git-widget-placeholder": "main",
+     "ignore.virus.scanning.warn.message": "true",
++    "junie.onboarding.icon.badge.shown": "true",
+     "kotlin-language-version-configured": "true",
+     "last_opened_file_path": "C:/Users/User/Desktop/Smart-Home-Project",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
+     "project.structure.last.edited": "Project",
+     "project.structure.proportion": "0.0",
+     "project.structure.side.proportion": "0.2",
+     "rearrange.code.on.save": "true",
+-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Java"
++    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Java",
++    "to.speed.mode.migration.done": "true"
+   }
+ }]]></component>
+   <component name="SharedIndexes">
+@@ -101,9 +113,20 @@
+       <option name="project" value="LOCAL" />
+       <updated>1777824766942</updated>
+     </task>
+-    <option name="localTasksCounter" value="2" />
++    <task id="LOCAL-00002" summary="Door security&#10;External Temp Sensor&#10;garden water system &#10;Camera &#10;Motion sensor">
++      <option name="closed" value="true" />
++      <created>1778418331488</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1778418331488</updated>
++    </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="3" />
++  </component>
+   <component name="Vcs.Log.Tabs.Properties">
+     <option name="TAB_STATES">
+       <map>
+@@ -117,7 +140,8 @@
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="master room&#10;kids room&#10;bathroom" />
+-    <option name="LAST_COMMIT_MESSAGE" value="master room&#10;kids room&#10;bathroom" />
++    <MESSAGE value="Door security&#10;External Temp Sensor&#10;garden water system &#10;Camera &#10;Motion sensor" />
++    <option name="LAST_COMMIT_MESSAGE" value="Door security&#10;External Temp Sensor&#10;garden water system &#10;Camera &#10;Motion sensor" />
+   </component>
+   <component name="XSLT-Support.FileAssociations.UIState">
+     <expand />

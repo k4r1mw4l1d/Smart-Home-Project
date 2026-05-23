@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="Edit mahmoud">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/MasterRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/MasterRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/SmartHomePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/SmartHomePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/Camera.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/Camera.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/Door_security.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/Door_security.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/ExternalTempSensor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/ExternalTempSensor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/GardenWaterSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/GardenWaterSystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/MasterRoom.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/MasterRoom.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/SmartHomePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/SmartHomePanel.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;state&quot;: &quot;MERGED&quot;,
+      &quot;assignee&quot;: &quot;3mr-khaled0&quot;,
+      &quot;author&quot;: &quot;3mr-khaled0&quot;
+    }
+  ],
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;MERGED&quot;,
+    &quot;assignee&quot;: &quot;3mr-khaled0&quot;,
+    &quot;author&quot;: &quot;3mr-khaled0&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/k4r1mw4l1d/Smart-Home-Project.git&quot;,
+    &quot;accountId&quot;: &quot;2371cb57-a9f1-42d4-89a9-ebce0903dbb7&quot;
+  }
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="3BU5RxQ5hwV8x8xEJaU02NB86n2" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.JavaFX.executor": "Run",
+    "Application.SmartHomePanel.executor": "Run",
+    "Application.mainApp.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "#7 on main",
+    "ignore.preview.features.used": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/User/Desktop/Smart-Home-Project",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "rearrange.code.on.save": "true",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Smart-Home-Project" />
+      <recent name="D:\SmartHome\Project\resources\alarmSound" />
+      <recent name="D:\SmartHome\Project\resources" />
+      <recent name="D:\SmartHome\Project" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.32098.37" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="" />
+      <created>1774530803718</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1774530803718</updated>
+    </task>
+    <task id="LOCAL-00001" summary="master room&#10;kids room&#10;bathroom">
+      <option name="closed" value="true" />
+      <created>1777824766942</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1777824766942</updated>
+    </task>
+    <task id="LOCAL-00002" summary="master room&#10;kids room&#10;bathroom">
+      <option name="closed" value="true" />
+      <created>1777898024208</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1777898024208</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added alarm and Omar's classes">
+      <option name="closed" value="true" />
+      <created>1778128692430</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1778128692430</updated>
+    </task>
+    <task id="LOCAL-00004" summary="half of javafx">
+      <option name="closed" value="true" />
+      <created>1778418662348</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1778418662348</updated>
+    </task>
+    <task id="LOCAL-00005" summary="GUI project">
+      <option name="closed" value="true" />
+      <created>1778447227726</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1778447227726</updated>
+    </task>
+    <task id="LOCAL-00006" summary="resources">
+      <option name="closed" value="true" />
+      <created>1778447274041</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1778447274041</updated>
+    </task>
+    <task id="LOCAL-00007" summary="نجرب">
+      <option name="closed" value="true" />
+      <created>1778556432441</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1778556432441</updated>
+    </task>
+    <task id="LOCAL-00008" summary="mover resources out of src&#10;changed timeline in temp sensors">
+      <option name="closed" value="true" />
+      <created>1778964206099</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1778964206099</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Main after opening">
+      <option name="closed" value="true" />
+      <created>1778990788070</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1778990788070</updated>
+    </task>
+    <task id="LOCAL-00010" summary="closed auto">
+      <option name="closed" value="true" />
+      <created>1779051050285</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1779051050285</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Update main">
+      <option name="closed" value="true" />
+      <created>1779052899118</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1779052899118</updated>
+    </task>
+    <task id="LOCAL-00012" summary="3 alarms&#10;main name&#10;scrollPane">
+      <option name="closed" value="true" />
+      <created>1779062771960</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1779062771960</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fixed all bugs">
+      <option name="closed" value="true" />
+      <created>1779398777097</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1779398777097</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fixed all bugs2">
+      <option name="closed" value="true" />
+      <created>1779399013106</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1779399013106</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fixed all bugs2">
+      <option name="closed" value="true" />
+      <created>1779442787321</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1779442787321</updated>
+    </task>
+    <task id="LOCAL-00016" summary="last edit">
+      <option name="closed" value="true" />
+      <created>1779473338978</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1779473338978</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Edit mahmoud">
+      <option name="closed" value="true" />
+      <created>1779488216471</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1779488216471</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="master room&#10;kids room&#10;bathroom" />
+    <MESSAGE value="added alarm and Omar's classes" />
+    <MESSAGE value="half of javafx" />
+    <MESSAGE value="GUI project" />
+    <MESSAGE value="resources" />
+    <MESSAGE value="نجرب" />
+    <MESSAGE value="mover resources out of src&#10;changed timeline in temp sensors" />
+    <MESSAGE value="Main after opening" />
+    <MESSAGE value="closed auto" />
+    <MESSAGE value="Update main" />
+    <MESSAGE value="3 alarms&#10;main name&#10;scrollPane" />
+    <MESSAGE value="fixed all bugs" />
+    <MESSAGE value="fixed all bugs2" />
+    <MESSAGE value="last edit" />
+    <MESSAGE value="Edit mahmoud" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edit mahmoud" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
