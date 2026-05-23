@@ -3257,6 +3257,7 @@ public class SmartHomePanel extends Application {
         return card;
     }
 
+
     // ──── Emergency card ─────────────────────────
     public VBox emergency() {
 

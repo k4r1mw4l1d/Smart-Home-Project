@@ -5,7 +5,6 @@
  *                  3. motion detection system
  */
 
-
 import javafx.beans.property.*;
 
 public class Door_security extends SmartDevice {

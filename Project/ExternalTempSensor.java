@@ -5,7 +5,6 @@
  *                  3. Weather condition description.
  */
 
-
 import javafx.beans.property.*;
 
 
