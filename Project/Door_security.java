@@ -1,10 +1,8 @@
 /*
  *    ============Door Security============
  *    consists of : 1. Open / Closed state detection.
- *                  2. Lock / Unlock control.
- *                  3. Intrusion alert system.
- *                  4. Entry log history.
- *                  5. Auto-lock timer flag.
+ *                  2. Intrusion alert system.
+ *                  3. motion detection system
  */
 
 

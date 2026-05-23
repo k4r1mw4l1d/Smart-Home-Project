@@ -2,9 +2,8 @@
  *    ============Garden Water System============
  *    consists of : 1. Manual / Auto watering control.
  *                  2. Soil moisture monitoring.
- *                  3. Scheduled watering sessions.
- *                  4. Water usage tracker.
- *                  5. Rain detection (skip watering if raining).
+ *                  3. Water usage tracker.
+ *                  4. Rain detection (skip watering if raining).
  */
 
 import javafx.beans.property.*;
@@ -134,6 +133,10 @@ public class GardenWaterSystem extends SmartDevice {
 
     public double getWaterUsedLiters() {
         return waterUsedLiters.get();
+    }
+
+    public void setWaterUsedLiters(double v) {
+        waterUsedLiters.set(v);
     }
 
     public double getDryThreshold() {

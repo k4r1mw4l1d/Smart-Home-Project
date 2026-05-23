@@ -3,8 +3,6 @@
  *    consists of : 1. Live / Off recording state.
  *                  2. Night vision mode.
  *                  3. Motion-triggered recording.
- *                  4. Pan / Tilt angle control.
- *                  5. Storage usage tracking.
  */
 
 // ───Imports────────────────────────────────────────────
@@ -21,7 +19,9 @@ public class Camera extends SmartDevice {
     private final BooleanProperty emergency = new SimpleBooleanProperty(false);
 
     // ──────Constructor───────────────────────────────────────
-    public Camera(String deviceId, String name, String room,
+    public Camera(String deviceId,
+                  String name,
+                  String room,
                   boolean nightVision,
                   boolean motionRecord,
                   boolean emergency) {
