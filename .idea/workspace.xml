@@ -4,17 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="fixed all bugs2">
+    <list default="true" id="2f640dfd-2606-41e6-a330-7b5201e60620" name="Changes" comment="Edit mahmoud">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/AlarmTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/AlarmTime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/CardImages.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/CardImages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Camera.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/MasterRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/MasterRoom.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/SmartHomePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/SmartHomePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/AlarmTime.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/AlarmTime.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/Camera.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/Camera.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/Door_security.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/Door_security.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/ExternalTempSensor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/ExternalTempSensor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/GardenWaterSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/GardenWaterSystem.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/MasterRoom.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/MasterRoom.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/SmartHomePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/SmartHomePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Smart-Home-Project/images/TVOnLiv.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Smart-Home-Project/images/TVOnLiv.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/TVOnLiv.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/TVOnLiv.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +94,7 @@
     "project.structure.side.proportion": "0.2",
     "rearrange.code.on.save": "true",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Java"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -240,7 +240,23 @@
       <option name="project" value="LOCAL" />
       <updated>1779442787321</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="last edit">
+      <option name="closed" value="true" />
+      <created>1779473338978</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1779473338978</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Edit mahmoud">
+      <option name="closed" value="true" />
+      <created>1779488216471</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1779488216471</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -268,7 +284,9 @@
     <MESSAGE value="3 alarms&#10;main name&#10;scrollPane" />
     <MESSAGE value="fixed all bugs" />
     <MESSAGE value="fixed all bugs2" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed all bugs2" />
+    <MESSAGE value="last edit" />
+    <MESSAGE value="Edit mahmoud" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edit mahmoud" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

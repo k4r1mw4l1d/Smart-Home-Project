@@ -10,7 +10,6 @@
 import javafx.beans.property.*;
 
 import java.time.LocalTime;
-import java.util.Scanner;
 
 public class MasterRoom extends SmartDevice {
 

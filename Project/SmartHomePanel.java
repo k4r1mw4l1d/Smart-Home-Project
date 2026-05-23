@@ -189,16 +189,6 @@ public class SmartHomePanel extends Application {
         primaryStage.show();
     }
 
-
-    //─────Main program ───────────────────────────
-    public void loadProgram() {
-
-        root.setLeft(buildSidebar());
-        root.setCenter(buildDashboard());
-        setOnScreen(buildMainScreen());
-        enableLightMode();
-    }
-
     //─────First page ─────────────────────────────
     public void showWelcomeScreen() {
 
@@ -235,7 +225,7 @@ public class SmartHomePanel extends Application {
         spacer.setPrefHeight(80);
 
         // ───── Input ───────────────────────
-        VBox field = new VBox(10);
+        VBox field = new VBox(30);
         field.setAlignment(Pos.CENTER);
         field.setMaxWidth(300);
 
@@ -253,8 +243,6 @@ public class SmartHomePanel extends Application {
                         "-fx-border-color: transparent;"
         );
 
-        field.getChildren().addAll(enter, enterName);
-
         // ───── Button ────────────────────
         Button bt = new Button("Enter");
         bt.setStyle(
@@ -266,9 +254,7 @@ public class SmartHomePanel extends Application {
                         "-fx-padding: 10 30 10 30;"
         );
 
-        screen.getChildren().addAll(top, spacer, field, bt);
-
-        root.setCenter(screen);
+        field.getChildren().addAll(enter, enterName, bt);
 
         bt.setOnMouseEntered(e ->
                 bt.setStyle(
@@ -292,7 +278,7 @@ public class SmartHomePanel extends Application {
                 )
         );
 
-        bt.setOnAction(e -> {
+        bt.setOnMouseClicked(e -> {
             name = enterName.getText();
             loadProgram();
         });
@@ -305,9 +291,23 @@ public class SmartHomePanel extends Application {
             }
         });
 
+        screen.getChildren().addAll(top, spacer, field);
+
+        root.setCenter(screen);
+
         mqttService.setModels(livingRoom, masterRoom, kidsRoom, kitchen, bathroom);
         mqttService.connect();
     }
+
+    //─────Main program ───────────────────────────
+    public void loadProgram() {
+
+        root.setLeft(buildSidebar());
+        root.setCenter(buildDashboard());
+        setOnScreen(buildMainScreen());
+        enableLightMode();
+    }
+
 
     //─────Sidebar ────────────────────────────────
     public VBox buildSidebar() {
@@ -2915,6 +2915,8 @@ public class SmartHomePanel extends Application {
     // ──── Humidity card ──────────────────────
     public VBox outHumidity() {
 
+        Random random = new Random();
+
         CardImages result = makeCard("humidity", "Humidity Sensor", "humidity", 200);
 
         VBox card = result.card;
@@ -2926,7 +2928,34 @@ public class SmartHomePanel extends Application {
                         "-fx-text-fill: #1b55cf;"
         );
 
-        humidityLabel.setText((int) waterSystem.getHumidity() + " %");
+        final int[] humidity = {50};
+        humidityLabel.setText(humidity[0] + " %");
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(15), e -> {
+
+                    int change = random.nextInt(-10, 11);
+                    humidity[0] += change;
+
+                    if (humidity[0] < 10) humidity[0] = 10;
+                    if (humidity[0] > 90) humidity[0] = 90;
+
+                    humidityLabel.setText(humidity[0] + " %");
+
+                    if (humidity[0] < 30) {
+                        waterSystem.setWateringOn(true);
+                        humidityLabel.setStyle("-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #e67e22;");
+                    } else if (humidity[0] > 70) {
+                        waterSystem.setWateringOn(false);
+                        humidityLabel.setStyle("-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #3498db;");
+                    } else {
+                        humidityLabel.setStyle("-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2ecc71;");
+                    }
+                })
+        );
+
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
 
         VBox content = new VBox(10, humidityLabel);
         content.setAlignment(Pos.CENTER);
@@ -3276,12 +3305,14 @@ public class SmartHomePanel extends Application {
 
             if (!newVal) {
                 img.setImage(dangerImg);
-                masterRoom.setDoorOpen(true);
-                doorSecurity.setDoorOpen(true);
+                masterRoom.setDoorOpen(false);
+                camera.setEmergency(true);
+                doorSecurity.setDoorOpen(false);
             } else {
                 img.setImage(safeImg);
-                masterRoom.setDoorOpen(false);
-                doorSecurity.setDoorOpen(false);
+                masterRoom.setDoorOpen(true);
+                camera.setEmergency(true);
+                doorSecurity.setDoorOpen(true);
             }
         });
 
@@ -3392,13 +3423,47 @@ public class SmartHomePanel extends Application {
         for (int i = 1; i <= 12; i++) hourBox.getItems().add(String.format("%02d", i));
         hourBox.setValue("07");
 
+        hourBox.setStyle(
+                "-fx-background-color: #ffffff;" +
+                        "-fx-border-color: #1e3a5f;" +
+                        "-fx-border-radius: 12;" +
+                        "-fx-background-radius: 12;" +
+                        "-fx-text-fill: white;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-padding: 5 10 5 10;"
+        );
+
+
         ComboBox<String> minuteBox = new ComboBox<>();
         for (int i = 0; i < 60; i++) minuteBox.getItems().add(String.format("%02d", i));
         minuteBox.setValue("00");
 
+        minuteBox.setStyle(
+                "-fx-background-color: #ffffff;" +
+                        "-fx-border-color: #1e3a5f;" +
+                        "-fx-border-radius: 12;" +
+                        "-fx-background-radius: 12;" +
+                        "-fx-text-fill: white;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-padding: 5 10 5 10;"
+        );
+
         ComboBox<String> ampmBox = new ComboBox<>();
         ampmBox.getItems().addAll("AM", "PM");
         ampmBox.setValue("AM");
+
+        ampmBox.setStyle(
+                "-fx-background-color: #ffffff;" +
+                        "-fx-border-color: #1e3a5f;" +
+                        "-fx-border-radius: 12;" +
+                        "-fx-background-radius: 12;" +
+                        "-fx-text-fill: white;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-padding: 5 10 5 10;"
+        );
 
         HBox timeRow = new HBox(10, hourBox, minuteBox, ampmBox);
         timeRow.setAlignment(Pos.CENTER);

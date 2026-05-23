@@ -5,8 +5,6 @@
  *                  3. Motion-triggered recording.
  */
 
-// ───Imports────────────────────────────────────────────
-
 import javafx.beans.property.*;
 
 public class Camera extends SmartDevice {
